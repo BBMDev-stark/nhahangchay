@@ -46,7 +46,11 @@ export function IntroProvider({ children }: { children: ReactNode }) {
       : introConfig.assets.scene;
   const forkSrc = introConfig.assets.fork;
 
-  const [shouldMountIntro, setShouldMountIntro] = useState(false);
+  // Khởi tạo đúng trạng thái ngay từ SSR/hydration trên trang chủ. Nếu bắt đầu
+  // bằng `false`, website đích có thể lộ ra một frame trước khi effect bật intro.
+  const [shouldMountIntro, setShouldMountIntro] = useState(
+    () => introConfig.enabled && isHomeRoute
+  );
   const [debugEnabled, setDebugEnabled] = useState(false);
   const [phase, setPhase] = useState<IntroPhase>("loading");
   const [exitCompletionManaged, setExitCompletionManaged] = useState(false);

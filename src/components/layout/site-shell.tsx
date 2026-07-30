@@ -66,11 +66,22 @@ function SiteShellInner({
   const introActive = shouldMountIntro;
   const revealed = !introActive || phase === "entering" || phase === "completed";
   const showDestinationChrome = !isIntroVisible || phase === "entering";
+  const transitionActive = introActive && phase !== "completed";
+  const preflightActive = !hydrated && pathname === "/";
 
   return (
     <>
-      {!hydrated && pathname === "/" && (
-        <div className="intro-preflight" aria-hidden="true">
+      {preflightActive && (
+        <div
+          className="intro-preflight"
+          aria-hidden="true"
+          style={{
+            position: "fixed",
+            inset: 0,
+            zIndex: 1000,
+            background: "#ece8e0",
+          }}
+        >
           <div className="intro-preflight__frame">
             <div className="intro-preflight__fork" />
             <div className="intro-preflight__headline">
@@ -93,10 +104,11 @@ function SiteShellInner({
           ref={contentRef}
           tabIndex={-1}
           inert={isIntroVisible}
+          style={preflightActive ? { visibility: "hidden" } : undefined}
           className={cn(
             "site-theme-european flex min-h-screen flex-col outline-none",
-            introActive && "site-reveal",
-            introActive && (revealed ? "site-reveal--in" : "site-reveal--out")
+            transitionActive && "site-reveal",
+            transitionActive && (revealed ? "site-reveal--in" : "site-reveal--out")
           )}
         >
           {showDestinationChrome && scrollProgress}
