@@ -44,7 +44,9 @@ export function buildOrganizationSchema() {
     "@type": "Organization",
     name: siteConfig.name,
     url: siteConfig.url,
-    logo: `${siteConfig.url}/images/logo.png`,
+    // Dùng asset có thật để JSON-LD không trả về URL 404 trên production.
+    // Khi có logo chính thức, chỉ cần thêm `logoImage` vào siteConfig.
+    logo: `${siteConfig.url}${siteConfig.ogImage}`,
     sameAs: Object.values(siteConfig.social),
   };
 }
