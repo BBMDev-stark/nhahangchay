@@ -2,7 +2,7 @@ import Image from "next/image";
 import { chefs } from "@/features/team/data/chefs";
 import { dishes } from "@/features/menu/data/dishes";
 import { chefRecommendation } from "@/features/menu/data/chef-recommendation";
-import { formatVND } from "@/lib/utils/currency";
+import { formatVND } from "@/lib/utils";
 import styles from "./chef-recommendation.module.css";
 
 function LotusOrnament({ className }: { className?: string }) {
