@@ -48,7 +48,7 @@ export const DISH_ORDER = [
 export const dishDetails: Record<string, DishDetail> = {
   center: {
     id: "center",
-    src: "/images/custom/12.svg",
+    src: "/images/custom/optimized/12.webp",
     alt: "Món chay đặc trưng của Lotus & Earth",
     category: "Món Cuốn Tự Nhiên",
     titleLines: ["Cuốn", "Thiên Nhiên."],
@@ -114,7 +114,7 @@ export const dishDetails: Record<string, DishDetail> = {
 
   "dish-soup": {
     id: "dish-soup",
-    src: "/images/custom/4.svg",
+    src: "/images/custom/optimized/4.webp",
     alt: "Súp rau củ hữu cơ",
     category: "Món Khai Vị Ấm",
     titleLines: ["Súp Rau Củ", "Hữu Cơ."],
@@ -179,7 +179,7 @@ export const dishDetails: Record<string, DishDetail> = {
 
   "dish-side": {
     id: "dish-side",
-    src: "/images/custom/7.svg",
+    src: "/images/custom/optimized/7.webp",
     alt: "Món phụ theo mùa",
     category: "Món Phụ Theo Mùa",
     titleLines: ["Món Phụ", "Theo Mùa."],
@@ -244,7 +244,7 @@ export const dishDetails: Record<string, DishDetail> = {
 
   "dish-roll": {
     id: "dish-roll",
-    src: "/images/custom/5.svg",
+    src: "/images/custom/optimized/5.webp",
     alt: "Cuốn chay tươi",
     category: "Món Cuốn Tươi Mát",
     titleLines: ["Cuốn Chay", "Tươi Mát."],
@@ -309,7 +309,7 @@ export const dishDetails: Record<string, DishDetail> = {
 
   "dish-salad": {
     id: "dish-salad",
-    src: "/images/custom/321.svg",
+    src: "/images/custom/optimized/321.webp",
     alt: "Salad hoa quả hữu cơ",
     category: "Salad Hoa Quả Hữu Cơ",
     titleLines: ["Salad Hoa Quả", "Hữu Cơ."],

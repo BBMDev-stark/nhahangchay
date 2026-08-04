@@ -22,19 +22,19 @@ export const introConfig: IntroConfig = {
   },
 
   preloader: {
-    minimumDurationMs: 3600,
-    assetTimeoutMs: 8000,
+    minimumDurationMs: 1200,
+    assetTimeoutMs: 4000,
   },
 
   reveal: {
-    sceneMs: 980,
-    reducedMotionMs: 220,
+    sceneMs: 650,
+    reducedMotionMs: 160,
   },
 
   transition: {
-    coveredHoldMs: 1400,
-    exitMs: 1250,
-    exitReducedMotionMs: 260,
+    coveredHoldMs: 650,
+    exitMs: 650,
+    exitReducedMotionMs: 180,
   },
 
   debug: {

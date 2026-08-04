@@ -22,7 +22,6 @@ export function DishPhotoCarousel({
   const sceneRef = useRef<HTMLDivElement | null>(null);
   const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
   const readyRef = useRef(false);
-  const visibleRef = useRef(true);
 
   const markReady = useCallback(() => {
     if (readyRef.current) return;
@@ -32,25 +31,14 @@ export function DishPhotoCarousel({
 
   useEffect(() => {
     const scene = sceneRef.current;
-    if (!scene || typeof IntersectionObserver === "undefined") return;
+    if (!scene) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        visibleRef.current = entry.isIntersecting;
-      },
-      { rootMargin: "160px 0px" },
-    );
-
-    observer.observe(scene);
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
     let raf = 0;
+    let visible = typeof IntersectionObserver === "undefined";
 
     const render = () => {
-      if (!visibleRef.current || document.visibilityState === "hidden") {
-        raf = requestAnimationFrame(render);
+      if (!visible || document.visibilityState === "hidden") {
+        raf = 0;
         return;
       }
 
@@ -143,8 +131,46 @@ export function DishPhotoCarousel({
       raf = requestAnimationFrame(render);
     };
 
-    raf = requestAnimationFrame(render);
-    return () => cancelAnimationFrame(raf);
+    const start = () => {
+      if (raf === 0 && visible && document.visibilityState !== "hidden") {
+        raf = requestAnimationFrame(render);
+      }
+    };
+
+    const observer =
+      typeof IntersectionObserver === "undefined"
+        ? null
+        : new IntersectionObserver(
+            ([entry]) => {
+              visible = entry.isIntersecting;
+              if (visible) {
+                start();
+              } else if (raf !== 0) {
+                cancelAnimationFrame(raf);
+                raf = 0;
+              }
+            },
+            { rootMargin: "160px 0px" },
+          );
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        if (raf !== 0) cancelAnimationFrame(raf);
+        raf = 0;
+      } else {
+        start();
+      }
+    };
+
+    observer?.observe(scene);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    start();
+
+    return () => {
+      observer?.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      if (raf !== 0) cancelAnimationFrame(raf);
+    };
   }, [dishes, engineRef]);
 
   return (
@@ -167,9 +193,7 @@ export function DishPhotoCarousel({
             width={1536}
             height={1024}
             draggable={false}
-            priority={index === 0}
             sizes="(max-width: 767px) 82vw, (max-width: 1180px) 43vw, 34vw"
-            unoptimized
             onLoad={index === 0 ? markReady : undefined}
             onError={index === 0 ? markReady : undefined}
           />

@@ -21,6 +21,8 @@ import type {
 
 export const IntroContext = createContext<IntroContextValue | null>(null);
 
+const INTRO_SESSION_KEY = "lotus-earth-intro-seen";
+
 export function IntroProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isHomeRoute = pathname === "/";
@@ -73,8 +75,23 @@ export function IntroProvider({ children }: { children: ReactNode }) {
       debugFromQuery = false;
     }
 
-    // Intro được khởi động lại ở mỗi lượt tải/truy cập trang chủ. Không dùng
-    // sessionStorage nên reload luôn giữ đúng loading → intro → website.
+    let alreadySeen = false;
+    try {
+      alreadySeen = sessionStorage.getItem(INTRO_SESSION_KEY) === "true";
+    } catch {
+      alreadySeen = false;
+    }
+
+    // Giữ nghi thức thương hiệu ở lượt đầu, nhưng không bắt khách quay lại
+    // trả lại toàn bộ chi phí animation và tải asset trong cùng một phiên.
+    if (alreadySeen && !debugFromQuery) {
+      setShouldMountIntro(false);
+      setDebugEnabled(false);
+      setPhase("completed");
+      setExitCompletionManaged(false);
+      return;
+    }
+
     setShouldMountIntro(true);
     setDebugEnabled(debugFromQuery);
     setPhase("loading");
@@ -91,6 +108,15 @@ export function IntroProvider({ children }: { children: ReactNode }) {
 
   const isIntroVisible =
     isHomeRoute && shouldMountIntro && phase !== "completed";
+
+  useEffect(() => {
+    if (!isHomeRoute || phase !== "completed" || debugEnabled) return;
+    try {
+      sessionStorage.setItem(INTRO_SESSION_KEY, "true");
+    } catch {
+      // Storage có thể bị chặn; intro vẫn phải kết thúc bình thường.
+    }
+  }, [debugEnabled, isHomeRoute, phase]);
 
   useEffect(() => {
     if (!isIntroVisible) return;

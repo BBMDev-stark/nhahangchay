@@ -225,7 +225,17 @@ export function useDishExperience({
   );
 
   useEffect(() => {
+    const root = rootRef.current;
+    if (!root) return;
+
+    let visible = typeof IntersectionObserver === "undefined";
+
     const tick = (now: number) => {
+      if (!visible || document.visibilityState === "hidden") {
+        rafRef.current = 0;
+        return;
+      }
+
       const engine = engineRef.current;
       const phase = phaseRef.current;
 
@@ -277,9 +287,52 @@ export function useDishExperience({
       rafRef.current = requestAnimationFrame(tick);
     };
 
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, [count, startSnap]);
+    const start = () => {
+      if (
+        rafRef.current === 0 &&
+        visible &&
+        document.visibilityState !== "hidden"
+      ) {
+        rafRef.current = requestAnimationFrame(tick);
+      }
+    };
+
+    const observer =
+      typeof IntersectionObserver === "undefined"
+        ? null
+        : new IntersectionObserver(
+            ([entry]) => {
+              visible = entry.isIntersecting;
+              if (visible) {
+                start();
+              } else if (rafRef.current !== 0) {
+                cancelAnimationFrame(rafRef.current);
+                rafRef.current = 0;
+              }
+            },
+            { rootMargin: "200px 0px" },
+          );
+
+    const handleVisibilityChange = () => {
+      if (document.visibilityState === "hidden") {
+        if (rafRef.current !== 0) cancelAnimationFrame(rafRef.current);
+        rafRef.current = 0;
+      } else {
+        start();
+      }
+    };
+
+    observer?.observe(root);
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    start();
+
+    return () => {
+      observer?.disconnect();
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+      if (rafRef.current !== 0) cancelAnimationFrame(rafRef.current);
+      rafRef.current = 0;
+    };
+  }, [count, rootRef, startSnap]);
 
   useEffect(
     () => () => {

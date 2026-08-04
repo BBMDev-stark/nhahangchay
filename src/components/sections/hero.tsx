@@ -57,7 +57,7 @@ const cornerSlots = [
 // Món ăn ban đầu ở giữa
 const INITIAL_CENTER: Dish = {
   id: "center",
-  src: "/images/custom/12.svg",
+  src: "/images/custom/optimized/12.webp",
   alt: "Món chay đặc trưng của Lotus & Earth",
   name: "Món Đặc Trưng",
 };
@@ -66,25 +66,25 @@ const INITIAL_CENTER: Dish = {
 const INITIAL_CORNERS: Dish[] = [
   {
     id: "dish-soup",
-    src: "/images/custom/4.svg",
+    src: "/images/custom/optimized/4.webp",
     alt: "Súp rau củ hữu cơ",
     name: "Súp Rau Củ Hữu Cơ",
   },
   {
     id: "dish-side",
-    src: "/images/custom/7.svg",
+    src: "/images/custom/optimized/7.webp",
     alt: "Món phụ theo mùa",
     name: "Món Phụ Theo Mùa",
   },
   {
     id: "dish-roll",
-    src: "/images/custom/5.svg",
+    src: "/images/custom/optimized/5.webp",
     alt: "Cuốn chay tươi",
     name: "Cuốn Chay Tươi",
   },
   {
     id: "dish-salad",
-    src: "/images/custom/321.svg",
+    src: "/images/custom/optimized/321.webp",
     alt: "Salad hoa quả hữu cơ",
     name: "Salad Hoa Quả Hữu Cơ",
   },
@@ -387,7 +387,7 @@ export function Hero() {
                       src={centerDish.src}
                       alt={centerDish.alt}
                       fill
-                      priority
+                      priority={introPhase === "completed"}
                       sizes="(min-width: 1024px) 560px, (min-width: 768px) 420px, 360px"
                       className="object-cover"
                     />
@@ -510,7 +510,7 @@ export function Hero() {
         <div
           className="pointer-events-none absolute inset-0 bg-cover bg-center"
           style={{
-            backgroundImage: "url('/images/custom/8.svg')",
+            backgroundImage: "url('/images/custom/optimized/8.webp')",
           }}
         />
         <div className="pointer-events-none absolute inset-0 bg-bg-dark/45" />

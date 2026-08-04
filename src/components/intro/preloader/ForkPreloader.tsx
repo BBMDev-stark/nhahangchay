@@ -121,7 +121,7 @@ export function ForkPreloader({
         return;
       }
 
-      const durationScale = Math.max(0.88, minimumDuration / 3600);
+      const durationScale = Math.max(0.3, minimumDuration / 3600);
       const timeline = gsap.timeline({
         paused: true,
         defaults: { ease: "power2.out" },
@@ -182,7 +182,7 @@ export function ForkPreloader({
         .addLabel("exit")
         .call(finish);
 
-      safetyRef.current = gsap.delayedCall(8, () => {
+      safetyRef.current = gsap.delayedCall(5, () => {
         assetsReadyRef.current = true;
         if (timeline.paused() && progress.value >= 87.5) timeline.play();
       });
