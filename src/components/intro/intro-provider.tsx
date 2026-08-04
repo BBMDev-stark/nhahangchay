@@ -5,6 +5,7 @@ import {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
   type ReactNode,
 } from "react";
@@ -20,8 +21,6 @@ import type {
 } from "./types";
 
 export const IntroContext = createContext<IntroContextValue | null>(null);
-
-const INTRO_SESSION_KEY = "lotus-earth-intro-seen";
 
 export function IntroProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -56,6 +55,7 @@ export function IntroProvider({ children }: { children: ReactNode }) {
   const [debugEnabled, setDebugEnabled] = useState(false);
   const [phase, setPhase] = useState<IntroPhase>("loading");
   const [exitCompletionManaged, setExitCompletionManaged] = useState(false);
+  const hasCompletedThisLoadRef = useRef(false);
 
   useEffect(() => {
     if (!introConfig.enabled || !isHomeRoute) {
@@ -75,16 +75,10 @@ export function IntroProvider({ children }: { children: ReactNode }) {
       debugFromQuery = false;
     }
 
-    let alreadySeen = false;
-    try {
-      alreadySeen = sessionStorage.getItem(INTRO_SESSION_KEY) === "true";
-    } catch {
-      alreadySeen = false;
-    }
-
-    // Giữ nghi thức thương hiệu ở lượt đầu, nhưng không bắt khách quay lại
-    // trả lại toàn bộ chi phí animation và tải asset trong cùng một phiên.
-    if (alreadySeen && !debugFromQuery) {
+    // Chỉ bỏ qua khi intro đã hoàn tất trong chính vòng đời ứng dụng hiện tại.
+    // Refresh/hard reload tạo một vòng đời mới nên localhost và production đều
+    // luôn phát đầy đủ intro khi người dùng vào lại trang chủ.
+    if (hasCompletedThisLoadRef.current && !debugFromQuery) {
       setShouldMountIntro(false);
       setDebugEnabled(false);
       setPhase("completed");
@@ -110,13 +104,9 @@ export function IntroProvider({ children }: { children: ReactNode }) {
     isHomeRoute && shouldMountIntro && phase !== "completed";
 
   useEffect(() => {
-    if (!isHomeRoute || phase !== "completed" || debugEnabled) return;
-    try {
-      sessionStorage.setItem(INTRO_SESSION_KEY, "true");
-    } catch {
-      // Storage có thể bị chặn; intro vẫn phải kết thúc bình thường.
-    }
-  }, [debugEnabled, isHomeRoute, phase]);
+    if (!isHomeRoute || phase !== "completed") return;
+    hasCompletedThisLoadRef.current = true;
+  }, [isHomeRoute, phase]);
 
   useEffect(() => {
     if (!isIntroVisible) return;
