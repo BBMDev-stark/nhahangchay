@@ -79,16 +79,7 @@ type CuratedDish = {
   badges: string[];
   theme: DishTheme;
   ingredientNotes: [string, string, string, string, string];
-  profile: SignatureDish["procedural"]["profile"];
-  composition: SignatureDish["procedural"]["composition"];
-  seed: number;
-  plateColor: string;
-  plateRimColor: string;
   ingredientPalette: string[];
-  garnishPalette: string[];
-  sauceColor: string;
-  density: number;
-  height: number;
 };
 
 const CURATED: CuratedDish[] = [
@@ -106,16 +97,7 @@ const CURATED: CuratedDish[] = [
       "Bùi thơm, giòn nhẹ",
       "Tươi mát, cân bằng",
     ],
-    profile: "quinoa",
-    composition: "radial",
-    seed: 1701,
-    plateColor: "#27382d",
-    plateRimColor: "#b98a43",
     ingredientPalette: ["#d8c795", "#89a44f", "#e5a32f", "#b6cc62"],
-    garnishPalette: ["#254e2f", "#5e893e", "#c76755"],
-    sauceColor: "#d9872b",
-    density: 1,
-    height: 0.9,
   },
   {
     name: "Nấm Đông Cô Sốt Tiêu Đen",
@@ -131,16 +113,7 @@ const CURATED: CuratedDish[] = [
       "Hương thơm thanh",
       "Sánh đậm, cân vị",
     ],
-    profile: "mushroom",
-    composition: "asymmetric",
-    seed: 2805,
-    plateColor: "#252c26",
-    plateRimColor: "#a77a3a",
     ingredientPalette: ["#71513b", "#9a7353", "#c19b72", "#34271f"],
-    garnishPalette: ["#405a31", "#79924d", "#b69661"],
-    sauceColor: "#251912",
-    density: 0.88,
-    height: 1.06,
   },
   {
     name: "Cơm Sen Hoàng Cung",
@@ -156,16 +129,7 @@ const CURATED: CuratedDish[] = [
       "Tươi ngọt, cân sắc",
       "Giòn mềm vừa độ",
     ],
-    profile: "lotus-rice",
-    composition: "centered",
-    seed: 3912,
-    plateColor: "#30352b",
-    plateRimColor: "#c2974f",
     ingredientPalette: ["#d9cfab", "#d4c382", "#6e9b4b", "#dc8f3f"],
-    garnishPalette: ["#47693d", "#7a9a59", "#c88387"],
-    sauceColor: "#8c693b",
-    density: 1.08,
-    height: 1.12,
   },
   {
     name: "Lẩu Nấm Thảo Mộc",
@@ -181,16 +145,7 @@ const CURATED: CuratedDish[] = [
       "Hương rừng dịu ấm",
       "Nước dùng trong thanh",
     ],
-    profile: "hotpot",
-    composition: "radial",
-    seed: 4418,
-    plateColor: "#29231d",
-    plateRimColor: "#be8747",
     ingredientPalette: ["#7b5136", "#c8b79d", "#9e6d45", "#d19b57"],
-    garnishPalette: ["#39543a", "#6c8650", "#a83f2f"],
-    sauceColor: "#8a4d24",
-    density: 0.94,
-    height: 1.18,
   },
   {
     name: "Gỏi Cuốn Sen Vàng",
@@ -206,16 +161,7 @@ const CURATED: CuratedDish[] = [
       "Hương xanh tươi mới",
       "Chua ngọt hài hòa",
     ],
-    profile: "rolls",
-    composition: "rolled",
-    seed: 5110,
-    plateColor: "#26342a",
-    plateRimColor: "#b58f48",
     ingredientPalette: ["#e7dfc2", "#8fa35e", "#d6a153", "#bdc98a"],
-    garnishPalette: ["#31623b", "#6c994d", "#d9b94c"],
-    sauceColor: "#6f351f",
-    density: 0.82,
-    height: 0.78,
   },
   {
     name: "Súp Bí Đỏ Nước Cốt Dừa",
@@ -231,16 +177,7 @@ const CURATED: CuratedDish[] = [
       "Bùi giòn, giàu dưỡng chất",
       "Kem mịn thuần thực vật",
     ],
-    profile: "pumpkin-soup",
-    composition: "centered",
-    seed: 6237,
-    plateColor: "#35291d",
-    plateRimColor: "#c39145",
     ingredientPalette: ["#d87924", "#f0b44f", "#e6d5a2", "#9f6f2d"],
-    garnishPalette: ["#385b31", "#6d8742", "#d2bb7a"],
-    sauceColor: "#dd7624",
-    density: 0.72,
-    height: 0.62,
   },
   {
     name: "Tofu Steak Sốt Nấm",
@@ -256,16 +193,7 @@ const CURATED: CuratedDish[] = [
       "Giòn xanh, tươi ngọt",
       "Sốt nấm cô đặc",
     ],
-    profile: "tofu",
-    composition: "layered",
-    seed: 7042,
-    plateColor: "#293329",
-    plateRimColor: "#ad823f",
     ingredientPalette: ["#d8c99f", "#866249", "#a88964", "#5b7948"],
-    garnishPalette: ["#345b38", "#7a9856", "#d1b265"],
-    sauceColor: "#4a2f21",
-    density: 0.84,
-    height: 1,
   },
 ];
 
@@ -313,18 +241,5 @@ export const signatureDishes: SignatureDish[] = CURATED.map((curated) => {
       curated.ingredientPalette,
     ),
     theme: curated.theme,
-    procedural: {
-      id: source.id,
-      seed: curated.seed,
-      plateColor: curated.plateColor,
-      plateRimColor: curated.plateRimColor,
-      ingredientPalette: curated.ingredientPalette,
-      garnishPalette: curated.garnishPalette,
-      sauceColor: curated.sauceColor,
-      composition: curated.composition,
-      density: curated.density,
-      height: curated.height,
-      profile: curated.profile,
-    },
   };
 });

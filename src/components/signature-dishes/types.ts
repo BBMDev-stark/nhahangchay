@@ -10,22 +10,6 @@ export type DishExperiencePhase =
   | "switching-detail"
   | "closing";
 
-export type DishComposition =
-  | "centered"
-  | "radial"
-  | "asymmetric"
-  | "layered"
-  | "rolled";
-
-export type DishProfile =
-  | "quinoa"
-  | "mushroom"
-  | "lotus-rice"
-  | "hotpot"
-  | "rolls"
-  | "pumpkin-soup"
-  | "tofu";
-
 export type DishTheme = {
   background: string;
   backgroundSoft: string;
@@ -34,20 +18,6 @@ export type DishTheme = {
   glow: string;
   accent: string;
   accentLight: string;
-};
-
-export type ProceduralDishConfig = {
-  id: string;
-  seed: number;
-  plateColor: string;
-  plateRimColor: string;
-  ingredientPalette: string[];
-  garnishPalette: string[];
-  sauceColor: string;
-  composition: DishComposition;
-  density: number;
-  height: number;
-  profile: DishProfile;
 };
 
 export type SignatureIngredient = {
@@ -70,7 +40,6 @@ export type SignatureDish = {
   badges: string[];
   ingredients: SignatureIngredient[];
   theme: DishTheme;
-  procedural: ProceduralDishConfig;
 };
 
 export type DishMotionEngine = {
