@@ -765,6 +765,172 @@
   }
 }
 
+/* Reference-matched portrait menu form. */
+.menuPage {
+  background: #f7f3eb url("/images/menu-book/menu-page-background-v2.png") center / 100% 100% no-repeat;
+}
+
+.menuPage::before,
+.menuPage::after { display: none; }
+
+.menuHero,
+.menuPageDense .menuHero {
+  height: 210px;
+  overflow: visible;
+  background: transparent;
+}
+
+.menuPhotoArch {
+  position: absolute;
+  z-index: 1;
+  top: 31px;
+  left: 55.1%;
+  width: 33.6%;
+  height: 176px;
+  overflow: hidden;
+  border-radius: 82px 82px 0 0;
+}
+
+.menuHeroImage {
+  object-fit: cover;
+  object-position: center;
+  filter: saturate(.92) contrast(1.04);
+}
+
+.menuHeroVeil { display: none; }
+
+.menuHeroCopy,
+.menuPageDense .menuHeroCopy {
+  top: 37px;
+  left: 30px;
+  width: 49%;
+}
+
+.menuHeroCopy span {
+  margin-bottom: 16px;
+  color: #d5ad56;
+  font-size: 6px;
+  letter-spacing: .2em;
+}
+
+.menuHeroCopy h3 {
+  max-width: 185px;
+  color: #fff8e7;
+  font-size: 39px;
+  font-weight: 500;
+  line-height: .93;
+}
+
+.menuHeroCopy em {
+  margin-top: 12px;
+  color: #f282aa;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.menuBody,
+.menuPageDense .menuBody {
+  height: 365px;
+  padding: 39px 31px 35px;
+  overflow: hidden;
+}
+
+.menuBody > .menuRows {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 28px;
+  row-gap: 0;
+}
+
+.menuRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  min-height: 53px;
+  padding: 0 0 8px;
+  align-content: start;
+  border-bottom: 1px solid rgba(176, 129, 45, .38);
+}
+
+.itemName,
+.menuPageDense .itemName {
+  max-width: none;
+  overflow: hidden;
+  color: #123e2b;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.05;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.leader { display: none; }
+
+.itemPrice,
+.menuPageDense .itemPrice {
+  padding-left: 7px;
+  color: #b77d21;
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.menuRow small {
+  display: -webkit-box;
+  grid-column: 1 / -1;
+  margin-top: 5px;
+  overflow: hidden;
+  color: rgba(36, 56, 45, .72);
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-size: 7px;
+  font-style: italic;
+  line-height: 1.25;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.secondMenuSection,
+.menuPageDense .secondMenuSection { margin-top: 8px; }
+
+.secondMenuSection h4,
+.menuPageDense .secondMenuSection h4 {
+  margin-bottom: 7px;
+  color: #c42767;
+  font-size: 10px;
+}
+
+.secondMenuSection .menuRows {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 28px;
+  row-gap: 0;
+}
+
+.menuPageDense .menuRow { min-height: 42px; padding-bottom: 5px; }
+.menuPageDense .menuRow small { margin-top: 3px; font-size: 6px; -webkit-line-clamp: 1; }
+
+.menuFooter {
+  right: 29px;
+  bottom: 14px;
+  left: 29px;
+  padding-top: 0;
+  border: 0;
+  color: #204330;
+  font-size: 6px;
+}
+
+.menuFooter b { color: #b77d21; font-size: 12px; }
+
+@media (max-width: 767px) {
+  .menuHero, .menuPageDense .menuHero { height: 210px; }
+  .menuPhotoArch { top: 31px; height: 176px; }
+  .menuHeroCopy, .menuPageDense .menuHeroCopy { top: 37px; left: 30px; }
+  .menuHeroCopy h3 { font-size: 37px; }
+  .menuBody, .menuPageDense .menuBody { height: 365px; padding: 39px 29px 35px; }
+  .menuBody > .menuRows, .secondMenuSection .menuRows { column-gap: 22px; }
+  .itemName, .menuPageDense .itemName { font-size: 12px; }
+  .itemPrice, .menuPageDense .itemPrice { font-size: 9px; }
+}
+
 @media (max-width: 430px) {
   .stage {
     min-height: 570px;
@@ -830,4 +996,174 @@
       45px 35px,
       59px 13px;
   }
+}
+
+/* Keep the original page-flip system; only the supplied cover is transparent. */
+.coverPage {
+  background: transparent;
+  box-shadow: none;
+}
+
+.coverArtwork {
+  background: transparent;
+}
+
+.coverPage::before,
+.coverPage::after,
+.coverGrain,
+.coverSheen,
+.coverEdge {
+  opacity: 0;
+}
+
+.menuPage { position: relative; width: 100%; height: 100%; overflow: hidden; color: #193f2b; background: linear-gradient(90deg, rgba(109,82,34,.055), transparent 9%, transparent 92%, rgba(109,82,34,.05)), radial-gradient(circle at 50% 8%, rgba(255,255,255,.96), transparent 36%), #f8f3e9; }
+.menuPage::before { position: absolute; z-index: 4; inset: 10px; border: 1px solid rgba(174,133,58,.42); pointer-events: none; content: ""; }
+.menuPage::after { position: absolute; z-index: 4; inset: 14px; border: 1px solid rgba(174,133,58,.13); pointer-events: none; content: ""; }
+.menuHero { position: relative; height: 164px; overflow: hidden; background: #123e29; }
+.menuHeroImage { object-fit: cover; object-position: center; filter: saturate(.84) contrast(1.06); }
+.menuHeroVeil { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,43,27,.96), rgba(10,43,27,.84) 48%, rgba(10,43,27,.17)), linear-gradient(0deg, rgba(4,27,17,.36), transparent 58%); }
+.menuHeroCopy { position: absolute; z-index: 2; top: 32px; left: 30px; width: 75%; color: #fff9eb; }
+.menuHeroCopy span { display: block; margin-bottom: 8px; color: #d8b568; font-size: 7px; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; }
+.menuHeroCopy h3 { margin: 0; font-family: var(--font-cormorant), Georgia, serif; font-size: 29px; font-weight: 500; line-height: .96; letter-spacing: -.02em; text-wrap: balance; }
+.menuHeroCopy em { display: block; margin-top: 8px; color: #f39aba; font-family: var(--font-cormorant), Georgia, serif; font-size: 11px; letter-spacing: .08em; }
+.menuBody { position: relative; z-index: 2; padding: 24px 28px 42px; }
+.menuLotus { display: grid; position: relative; width: 100%; height: 16px; margin: -2px 0 13px; place-items: center; color: #c79b47; }
+.menuLotus::before, .menuLotus::after { position: absolute; width: 29%; height: 1px; background: linear-gradient(90deg, transparent, rgba(184,137,50,.58)); content: ""; }
+.menuLotus::before { left: 20%; } .menuLotus::after { right: 20%; transform: rotate(180deg); } .menuLotus svg { width: 17px; height: 14px; }
+.menuRows { display: grid; gap: 7px; }
+.menuRow { display: flex; min-width: 0; align-items: baseline; font-size: 10px; line-height: 1.18; }
+.itemName { max-width: 68%; color: #24392e; font-family: var(--font-cormorant), Georgia, serif; font-size: 12px; font-weight: 600; }
+.leader { min-width: 8px; flex: 1; margin: 0 5px 3px; border-bottom: 1px dotted rgba(123,91,34,.38); }
+.itemPrice { flex: none; color: #b17c2c; font-size: 8px; font-weight: 750; letter-spacing: .02em; white-space: nowrap; }
+.secondMenuSection { margin-top: 14px; }
+.secondMenuSection h4 { display: flex; margin: 0 0 10px; align-items: center; gap: 8px; color: #c32464; font-family: var(--font-cormorant), Georgia, serif; font-size: 13px; font-weight: 650; letter-spacing: .04em; text-align: center; text-transform: uppercase; }
+.secondMenuSection h4 span { height: 1px; flex: 1; background: rgba(184,137,50,.42); }
+.menuPageDense .menuHero { height: 140px; } .menuPageDense .menuHeroCopy { top: 27px; } .menuPageDense .menuBody { padding-top: 17px; } .menuPageDense .menuRows { gap: 4px; } .menuPageDense .itemName { font-size: 10px; } .menuPageDense .itemPrice { font-size: 7px; } .menuPageDense .secondMenuSection { margin-top: 9px; } .menuPageDense .secondMenuSection h4 { margin-bottom: 7px; font-size: 11px; }
+.menuFooter { position: absolute; z-index: 3; right: 27px; bottom: 19px; left: 27px; display: flex; padding-top: 7px; align-items: center; justify-content: space-between; border-top: 1px solid rgba(171,128,48,.29); color: rgba(30,69,46,.62); font-size: 6px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.menuFooter b { color: #bd8d38; font-family: var(--font-cormorant), Georgia, serif; font-size: 9px; }
+
+@media (max-width: 767px) {
+  .menuHero { height: 132px; } .menuHeroCopy { top: 25px; left: 24px; } .menuHeroCopy h3 { font-size: 25px; } .menuBody { padding: 18px 23px 38px; } .menuRows { gap: 5px; } .itemName { font-size: 10px; } .itemPrice { font-size: 7px; } .menuPageDense .menuHero { height: 115px; } .menuPageDense .menuBody { padding-top: 12px; } .menuPageDense .menuRows { gap: 3px; } .menuPageDense .itemName { font-size: 8px; } .menuFooter { right: 22px; left: 22px; }
+}
+
+/* Final cascade: exact structure of the supplied menu-page reference. */
+.menuPage { background: #f7f3eb url("/images/menu-book/menu-page-background-v2.png") center / 100% 100% no-repeat; }
+.menuPage::before, .menuPage::after { display: none; }
+.menuHero, .menuPageDense .menuHero { height: 210px; overflow: visible; background: transparent; }
+.menuPhotoArch { position: absolute; z-index: 1; top: 31px; left: 55.1%; width: 33.6%; height: 176px; overflow: hidden; border-radius: 82px 82px 0 0; }
+.menuHeroImage { object-fit: cover; object-position: center; filter: saturate(.92) contrast(1.04); }
+.menuHeroVeil { display: none; }
+.menuHeroCopy, .menuPageDense .menuHeroCopy { top: 37px; left: 30px; width: 49%; }
+.menuHeroCopy span { margin-bottom: 16px; color: #d5ad56; font-size: 6px; letter-spacing: .2em; }
+.menuHeroCopy h3 { max-width: 185px; color: #fff8e7; font-size: 39px; font-weight: 500; line-height: .93; }
+.menuHeroCopy em { margin-top: 12px; color: #f282aa; font-size: 15px; line-height: 1; }
+.menuBody, .menuPageDense .menuBody { height: 365px; padding: 39px 31px 35px; overflow: hidden; }
+.menuBody > .menuRows, .secondMenuSection .menuRows { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 28px; row-gap: 0; }
+.menuRow { display: grid; grid-template-columns: minmax(0, 1fr) auto; min-height: 53px; padding: 0 0 8px; align-content: start; border-bottom: 1px solid rgba(176,129,45,.38); }
+.itemName, .menuPageDense .itemName { max-width: none; overflow: hidden; color: #123e2b; font-size: 13px; font-weight: 600; line-height: 1.05; text-overflow: ellipsis; white-space: nowrap; }
+.leader { display: none; }
+.itemPrice, .menuPageDense .itemPrice { padding-left: 7px; color: #b77d21; font-family: var(--font-cormorant), Georgia, serif; font-size: 10px; font-weight: 650; }
+.menuRow small { display: -webkit-box; grid-column: 1 / -1; margin-top: 5px; overflow: hidden; color: rgba(36,56,45,.72); font-family: var(--font-cormorant), Georgia, serif; font-size: 7px; font-style: italic; line-height: 1.25; -webkit-box-orient: vertical; -webkit-line-clamp: 2; }
+.secondMenuSection, .menuPageDense .secondMenuSection { margin-top: 8px; }
+.secondMenuSection h4, .menuPageDense .secondMenuSection h4 { margin-bottom: 7px; color: #c42767; font-size: 10px; }
+.menuPageDense .menuRow { min-height: 42px; padding-bottom: 5px; }
+.menuPageDense .menuRow small { margin-top: 3px; font-size: 6px; -webkit-line-clamp: 1; }
+.menuFooter { right: 29px; bottom: 14px; left: 29px; padding-top: 0; border: 0; color: #204330; font-size: 6px; }
+.menuFooter b { color: #b77d21; font-size: 12px; }
+
+@media (max-width: 767px) {
+  .menuHero, .menuPageDense .menuHero { height: 210px; }
+  .menuPhotoArch { top: 31px; height: 176px; }
+  .menuHeroCopy, .menuPageDense .menuHeroCopy { top: 37px; left: 30px; }
+  .menuHeroCopy h3 { font-size: 37px; }
+  .menuBody, .menuPageDense .menuBody { height: 365px; padding: 39px 29px 35px; }
+  .menuBody > .menuRows, .secondMenuSection .menuRows { column-gap: 22px; }
+  .itemName, .menuPageDense .itemName { font-size: 12px; }
+  .itemPrice, .menuPageDense .itemPrice { font-size: 9px; }
+}
+
+/* Never truncate dish names. Dense pages sacrifice supporting copy, not content. */
+.itemName,
+.menuPageDense .itemName {
+  display: block;
+  overflow: visible;
+  line-height: 1.08;
+  text-overflow: clip;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.menuPageDense .menuRow {
+  min-height: 34px;
+  padding-bottom: 4px;
+}
+
+.menuPageDense .itemName {
+  font-size: 9px;
+}
+
+.menuPageDense .itemPrice {
+  font-size: 7px;
+}
+
+.menuPageDense .menuRow small {
+  display: none;
+}
+
+/* Ground the book with a restrained contact shadow instead of a dark band. */
+.stageGlow {
+  bottom: 7%;
+  width: min(48%, 390px);
+  height: 3%;
+  background: rgb(20 29 22 / 24%);
+  box-shadow: none;
+  filter: blur(8px);
+  opacity: 0.16;
+}
+
+.experience[data-book-lit="true"] .stageGlow {
+  box-shadow: none;
+  opacity: 0.2;
+}
+
+.bookSizer::after {
+  bottom: 0;
+  width: 48%;
+  height: 2%;
+  background: rgb(12 22 16 / 34%);
+  filter: blur(6px);
+  opacity: 0.34;
+  transform: translateX(-50%) scaleX(0.76);
+}
+
+.bookMount {
+  filter:
+    brightness(.97)
+    saturate(.96)
+    drop-shadow(0 10px 12px rgb(16 28 20 / 22%));
+}
+
+.experience[data-book-lit="true"][data-book-state="front"] .bookMount,
+.experience[data-book-lit="true"][data-book-state="back"] .bookMount {
+  filter:
+    brightness(1)
+    saturate(.98)
+    drop-shadow(0 13px 16px rgb(16 28 20 / 25%))
+    drop-shadow(-5px -5px 13px rgb(205 158 74 / 8%));
+}
+
+.experience[data-book-state="reading"] .bookMount {
+  filter:
+    brightness(1)
+    saturate(.98)
+    drop-shadow(0 15px 18px rgb(16 28 20 / 24%));
+}
+
+.experience[data-book-state="reading"] .bookSizer::after {
+  opacity: .28;
+  transform: translateX(-50%) scaleX(.9);
+}
+
+.bookMount :global(.stf__block) {
+  filter: drop-shadow(0 7px 9px rgb(16 28 20 / 14%));
 }

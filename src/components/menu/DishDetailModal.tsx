@@ -250,14 +250,14 @@ export function DishDetailModal({ dishId, isOpen, onClose }: DishDetailModalProp
                     opacity: { duration: 0.5, ease: easeLuxury },
                     scale: { duration: 0.5, ease: easeLuxury },
                   }}
-                  className="absolute top-1/2 left-1/2 aspect-square w-[80%] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full bg-white shadow-[0_50px_100px_rgba(0,0,0,0.45)]"
+                  className="absolute top-1/2 left-1/2 aspect-square w-[88%] -translate-x-1/2 -translate-y-1/2 overflow-visible drop-shadow-[0_45px_60px_rgba(0,0,0,0.5)]"
                 >
                   <Image
                     src={dish.src}
                     alt={dish.alt}
                     fill
                     sizes="(min-width: 1024px) 440px, (min-width: 640px) 380px, 300px"
-                    className="object-cover"
+                    className="object-contain"
                   />
                 </motion.div>
 

@@ -5,8 +5,43 @@ import { motion } from "framer-motion";
 import { Badge } from "@/components/ui/badge";
 import { formatVND } from "@/lib/utils";
 import type { Dish } from "@/types";
+import { Leaf, Sprout } from "lucide-react";
+import styles from "@/components/sections/seasonal-menu.module.css";
 
-export function MenuCard({ dish }: { dish: Dish }) {
+export function MenuCard({ dish, variant = "default", emphasized = false }: { dish: Dish; variant?: "default" | "seasonal"; emphasized?: boolean }) {
+  if (variant === "seasonal") {
+    return (
+      <motion.article
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.72, ease: [0.22, 1, 0.36, 1] }}
+        className={`${styles.card} ${emphasized ? styles.cardEmphasized : ""}`}
+      >
+        <div className={styles.imageFrame}>
+          <Image src={dish.image} alt={dish.name} fill sizes="(max-width: 767px) 100vw, (max-width: 1279px) 33vw, 480px" className={styles.foodImage} />
+          <div className={styles.tags}>
+            {dish.tags.slice(0, 2).map((tag) => <Badge key={tag} tag={tag} />)}
+          </div>
+          <span className={`${styles.medallion} ${emphasized ? styles.medallionGold : ""}`} aria-hidden="true">✦</span>
+        </div>
+        <div className={styles.cardBody}>
+          <div className={styles.cardHeading}>
+            <h3>{dish.name}</h3>
+            <span>{formatVND(dish.price)}</span>
+          </div>
+          <div className={styles.divider}><span>◇</span></div>
+          <p className={styles.description}>{dish.description}</p>
+          <div className={styles.meta}>
+            <span><Leaf size={16} strokeWidth={1.4} />{dish.calories} kcal</span>
+            <i aria-hidden="true" />
+            <span><Sprout size={16} strokeWidth={1.4} />{dish.ingredients.slice(0, 3).join(", ")}</span>
+          </div>
+        </div>
+      </motion.article>
+    );
+  }
+
   return (
     <motion.article
       initial={{ opacity: 0, y: 30 }}
@@ -21,7 +56,7 @@ export function MenuCard({ dish }: { dish: Dish }) {
           alt={dish.name}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          className="bg-[#f3eee4] object-contain p-2 transition-transform duration-700 ease-out group-hover:scale-[1.02]"
         />
         {dish.tags.length > 0 && (
           <div className="absolute left-3 top-3 flex flex-wrap gap-1.5">

@@ -17,7 +17,7 @@ export function LoadingScreen() {
 
     let alreadyShown = false;
     try {
-      alreadyShown = sessionStorage.getItem("le-loaded") === "true";
+      alreadyShown = sessionStorage.getItem("huong-sen-loaded") === "true";
     } catch {
       alreadyShown = false;
     }
@@ -40,7 +40,7 @@ export function LoadingScreen() {
       setVisible(false);
       restoreScroll();
       try {
-        sessionStorage.setItem("le-loaded", "true");
+            sessionStorage.setItem("huong-sen-loaded", "true");
       } catch {
         // Storage có thể bị chặn; loading vẫn phải kết thúc bình thường.
       }
@@ -61,13 +61,13 @@ export function LoadingScreen() {
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed inset-0 z-200 flex flex-col items-center justify-center bg-[#070605]"
+          className="fixed inset-0 z-200 flex flex-col items-center justify-center bg-[#173d29]"
         >
           <motion.span
             initial={{ opacity: 0, letterSpacing: "0.1em" }}
             animate={{ opacity: 1, letterSpacing: "0.35em" }}
             transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-h2 font-heading text-[#f3ede2]"
+            className="text-h2 font-heading text-white"
           >
             {siteConfig.shortName.toUpperCase()}
           </motion.span>
@@ -75,7 +75,7 @@ export function LoadingScreen() {
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-            className="mt-6 h-px w-24 origin-left bg-[#c7a66a]"
+            className="mt-6 h-px w-24 origin-left bg-[#eb298c]"
           />
         </motion.div>
       )}

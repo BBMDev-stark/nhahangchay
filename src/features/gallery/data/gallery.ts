@@ -1,20 +1,84 @@
 import type { GalleryImage } from "@/types";
 
-const SPACE_TITLES = [
-  "Sảnh chính", "Khu vực VIP", "Bàn ngoài trời", "Quầy bar trà",
-  "Phòng riêng thiền tịnh", "Khu vườn nhật", "Ánh sáng hoàng hôn",
-  "Góc đọc sách", "Lối vào chính", "Khu bếp mở",
-  "Bàn đôi ban công", "Không gian sự kiện", "Chi tiết nội thất gỗ",
-  "Đèn lồng sân vườn", "Bàn dài gia đình", "Góc thiền trà",
-  "Cầu thang gỗ nguyên khối", "Sân trong lát đá", "Khu vực chờ",
-  "Toàn cảnh nhà hàng về đêm",
+export const galleryImages: GalleryImage[] = [
+  {
+    id: "gallery-space-01",
+    src: "/images/spaces/huong-sen-space-01.png",
+    alt: "Không gian bàn dài ấm cúng tại nhà hàng chay Hương Sen",
+    category: "khong-gian",
+    width: 960,
+    height: 1280,
+  },
+  {
+    id: "gallery-space-02",
+    src: "/images/spaces/huong-sen-space-02.png",
+    alt: "Khu bàn riêng với hốc tường trang trí tại Hương Sen",
+    category: "khong-gian",
+    width: 960,
+    height: 1280,
+  },
+  {
+    id: "gallery-space-03",
+    src: "/images/spaces/huong-sen-space-03.png",
+    alt: "Không gian dùng bữa và bảng hiệu Hương Sen",
+    category: "khong-gian",
+    width: 960,
+    height: 1280,
+  },
+  {
+    id: "gallery-space-04",
+    src: "/images/spaces/huong-sen-space-04.png",
+    alt: "Bàn ăn cạnh kệ trang trí và tủ sách tại Hương Sen",
+    category: "khong-gian",
+    width: 1534,
+    height: 2048,
+  },
+  {
+    id: "gallery-space-05",
+    src: "/images/spaces/huong-sen-space-05.png",
+    alt: "Phòng tiệc ấm cúng với tranh nghệ thuật tại Hương Sen",
+    category: "khong-gian",
+    width: 960,
+    height: 1280,
+  },
+  {
+    id: "gallery-space-06",
+    src: "/images/spaces/huong-sen-space-06.png",
+    alt: "Mặt tiền nhà hàng chay Hương Sen tại 778/2 Nguyễn Kiệm",
+    category: "khong-gian",
+    width: 1536,
+    height: 2048,
+  },
+  {
+    id: "gallery-space-07",
+    src: "/images/spaces/huong-sen-space-07.png",
+    alt: "Phòng bàn dài riêng tư tại nhà hàng Hương Sen",
+    category: "khong-gian",
+    width: 960,
+    height: 1280,
+  },
+  {
+    id: "gallery-space-08",
+    src: "/images/spaces/huong-sen-space-08.png",
+    alt: "Sảnh nhà hàng Hương Sen với đèn lồng và hoa trang trí",
+    category: "khong-gian",
+    width: 960,
+    height: 1280,
+  },
+  {
+    id: "gallery-space-09",
+    src: "/images/spaces/huong-sen-space-09.png",
+    alt: "Không gian bàn ăn thanh lịch tại nhà hàng Hương Sen",
+    category: "khong-gian",
+    width: 960,
+    height: 1280,
+  },
+  {
+    id: "gallery-space-10",
+    src: "/images/spaces/huong-sen-space-10.png",
+    alt: "Toàn cảnh sảnh và quầy lễ tân nhà hàng Hương Sen",
+    category: "khong-gian",
+    width: 1280,
+    height: 636,
+  },
 ];
-
-export const galleryImages: GalleryImage[] = SPACE_TITLES.map((title, i) => ({
-  id: `gallery-${String(i + 1).padStart(3, "0")}`,
-  src: `/images/gallery/space-${String(i + 1).padStart(2, "0")}.jpg`,
-  alt: title,
-  category: "khong-gian" as const,
-  width: 1200,
-  height: i % 3 === 0 ? 1500 : 900, // masonry variation
-}));

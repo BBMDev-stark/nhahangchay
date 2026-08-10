@@ -17,9 +17,11 @@ import {
   Sprout,
   HeartHandshake,
   ChefHat,
+  Flower2,
 } from "lucide-react";
 import { DishDetailModal } from "@/components/menu/DishDetailModal";
 import { useIntroController } from "@/components/intro/use-intro-controller";
+import styles from "./hero.module.css";
 
 const easeLuxury = [0.22, 1, 0.36, 1] as const;
 
@@ -33,23 +35,23 @@ type Dish = {
 // Vị trí & kích thước của 4 "ô" quanh đĩa chính — GIỮ NGUYÊN, không đổi
 const cornerSlots = [
   {
-    position: "left-[0%] top-[4%]",
-    size: "w-[64px] sm:w-[92px] md:w-[120px] lg:w-[150px]",
+    position: "left-[5%] top-[7%]",
+    size: "w-[78px] sm:w-[104px] md:w-[126px] lg:w-[142px]",
     delay: 0,
   },
   {
-    position: "right-[2%] top-[10%]",
-    size: "w-[70px] sm:w-[100px] md:w-[130px] lg:w-[160px]",
+    position: "right-[5%] top-[7%]",
+    size: "w-[78px] sm:w-[104px] md:w-[126px] lg:w-[142px]",
     delay: 0.6,
   },
   {
-    position: "left-[4%] bottom-[2%]",
-    size: "w-[68px] sm:w-[96px] md:w-[124px] lg:w-[150px]",
+    position: "left-[5%] bottom-[6%]",
+    size: "w-[78px] sm:w-[104px] md:w-[126px] lg:w-[142px]",
     delay: 1.2,
   },
   {
-    position: "right-[0%] bottom-[8%]",
-    size: "w-[64px] sm:w-[90px] md:w-[116px] lg:w-[140px]",
+    position: "right-[5%] bottom-[6%]",
+    size: "w-[78px] sm:w-[104px] md:w-[126px] lg:w-[142px]",
     delay: 1.8,
   },
 ] as const;
@@ -57,59 +59,59 @@ const cornerSlots = [
 // Món ăn ban đầu ở giữa
 const INITIAL_CENTER: Dish = {
   id: "center",
-  src: "/images/custom/optimized/12.webp",
-  alt: "Món chay đặc trưng của Lotus & Earth",
-  name: "Món Đặc Trưng",
+  src: "/images/huong-sen/hero/com-tay-cam-trimmed.png",
+  alt: "Cơm thố chay Hương Sen",
+  name: "Cơm Thố Hương Sen",
 };
 
 // Món ăn ban đầu ở 4 góc (map 1-1 theo index với cornerSlots)
 const INITIAL_CORNERS: Dish[] = [
   {
     id: "dish-soup",
-    src: "/images/custom/optimized/4.webp",
-    alt: "Súp rau củ hữu cơ",
-    name: "Súp Rau Củ Hữu Cơ",
+    src: "/images/huong-sen/hero/che-hat-sen-trimmed.png",
+    alt: "Chè hạt sen táo đỏ",
+    name: "Chè Hạt Sen Táo Đỏ",
   },
   {
     id: "dish-side",
-    src: "/images/custom/optimized/7.webp",
-    alt: "Món phụ theo mùa",
-    name: "Món Phụ Theo Mùa",
+    src: "/images/huong-sen/hero/pizza-chay-trimmed.png",
+    alt: "Pizza nấm chay",
+    name: "Pizza Nấm Chay",
   },
   {
     id: "dish-roll",
-    src: "/images/custom/optimized/5.webp",
-    alt: "Cuốn chay tươi",
-    name: "Cuốn Chay Tươi",
+    src: "/images/huong-sen/hero/nam-pho-mai-trimmed.png",
+    alt: "Nấm đút lò phô mai",
+    name: "Nấm Đút Lò Phô Mai",
   },
   {
     id: "dish-salad",
-    src: "/images/custom/optimized/321.webp",
-    alt: "Salad hoa quả hữu cơ",
-    name: "Salad Hoa Quả Hữu Cơ",
+    src: "/images/huong-sen/hero/che-trai-cay-trimmed.png",
+    alt: "Chè trái cây cốt dừa",
+    name: "Chè Trái Cây Cốt Dừa",
   },
 ];
 
 const features = [
   {
     icon: Leaf,
-    title: "100% Thuần Chay",
-    description: "Trọn vẹn hương vị, hoàn toàn từ thực vật.",
+    title: "Món Chay Đa Dạng",
+    description: "Nhiều lựa chọn từ món Việt đến món Á — Âu.",
   },
   {
     icon: Sprout,
-    title: "Nguyên Liệu Bền Vững",
-    description: "Đồng hành cùng nông trại hữu cơ địa phương.",
+    title: "Nguyên Liệu Tươi",
+    description: "Rau củ, nấm và hạt được lựa chọn kỹ.",
   },
   {
     icon: HeartHandshake,
-    title: "Trải Nghiệm Tĩnh Tâm",
-    description: "Không gian để chậm lại và kết nối.",
+    title: "Không Gian Ấm Cúng",
+    description: "Phù hợp cho gia đình và nhóm bạn.",
   },
   {
     icon: ChefHat,
-    title: "Nghệ Thuật Ẩm Thực",
-    description: "Từng món ăn được chăm chút tinh tế.",
+    title: "Chăm Chút Từ Tâm",
+    description: "Từng món ăn được hoàn thiện chỉn chu.",
   },
 ];
 
@@ -202,16 +204,9 @@ export function Hero() {
         data-window-cue={isWindowCueVisible ? "true" : "false"}
         onPointerMove={handleHeroPointerMove}
         onPointerLeave={() => setIsWindowNear(false)}
-        className="hero-background-stage relative overflow-hidden bg-bg-dark pt-[90px]"
+        className={`${styles.hero} hero-background-stage relative overflow-hidden pt-[96px]`}
       >
-        {/* background nền cho toàn bộ section */}
-        <div
-          className="pointer-events-none absolute inset-0 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('/images/custom/hero-european-background-final.png')",
-          }}
-        />
+        <div className={styles.architecture} aria-hidden="true" />
 
         <div
           className="hero-window-hotspot"
@@ -244,49 +239,63 @@ export function Hero() {
           style={{ animationDelay: "1.5s" }}
         />
 
-        <div className="relative z-10 mx-auto grid w-full max-w-[1440px] grid-cols-1 items-center gap-16 px-6 py-16 md:px-10 lg:grid-cols-[42%_58%] lg:gap-8 lg:px-16 lg:py-0 lg:min-h-[860px]">
+        <div className="relative z-10 mx-auto grid w-full max-w-[1680px] grid-cols-1 items-center gap-14 px-6 py-16 md:px-10 lg:min-h-[800px] lg:grid-cols-[46%_54%] lg:gap-3 lg:px-12 lg:py-0 xl:min-h-[840px]">
           {/* LEFT COLUMN */}
-          <div className="relative z-10 order-2 lg:order-1">
+          <div className={`${styles.copy} relative z-10 order-2 lg:order-1`}>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: easeLuxury }}
-              className="mb-6 flex items-center gap-3"
+              className="mb-5 flex items-center gap-4"
             >
-              <span className="flex size-8 items-center justify-center rounded-full border border-gold/50 text-green-primary">
-                <Leaf size={14} strokeWidth={1.5} />
-              </span>
-              <span className="text-eyebrow">Nuôi Dưỡng Tự Nhiên</span>
+              <span className="h-px w-8 bg-gold" />
+              <span className={`${styles.eyebrow} text-eyebrow`}>Nhà Hàng Chay Hương Sen</span>
             </motion.div>
 
-            <motion.p
+            <motion.h1
               initial={{ opacity: 0, scale: 0.96, filter: "blur(6px)" }}
               animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
               transition={{ duration: 1.4, delay: 0.85, ease: easeLuxury }}
-              className="text-hero-script -mt-2 text-gold sm:-mt-3 md:-mt-5 lg:-mt-7"
+              className={styles.title}
             >
-              Trọn Vị Sống.
-            </motion.p>
+              Thanh Vị
+              <br />
+              Từ Tâm
+            </motion.h1>
+
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0.8 }}
+              animate={{ opacity: 1, scaleX: 1 }}
+              transition={{ duration: 0.8, delay: 0.92, ease: easeLuxury }}
+              className={styles.divider}
+              aria-hidden="true"
+            >
+              <span />
+              <Flower2 size={24} strokeWidth={1.2} />
+              <span />
+            </motion.div>
 
             <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.95, ease: easeLuxury }}
-              className="mt-8 max-w-md text-[18px] leading-relaxed text-text/70"
+              className={`${styles.description} mt-5 max-w-[470px] text-[17px] leading-[1.7] text-text/75`}
             >
-              Lấy cảm hứng từ thiên nhiên, chế biến bằng đam mê. Trải nghiệm ẩm
-              thực chay tôn vinh mọi giác quan và nuôi dưỡng tâm hồn bạn.
+              Thưởng thức ẩm thực chay tinh tế trong không gian thanh lịch, ấm
+              cúng và an nhiên. Mỗi món ăn tại Hương Sen được chăm chút kỹ lưỡng
+              từ nguyên liệu đến cách trình bày, mang đến trải nghiệm ẩm thực
+              trọn vẹn tại 778/2 Nguyễn Kiệm, TP. Hồ Chí Minh.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.15, ease: easeLuxury }}
-              className="mt-10 flex flex-wrap items-center gap-6"
+              className="mt-8 flex flex-wrap items-center gap-4"
             >
               <Link
                 href="/menu"
-                className="group flex h-[60px] items-center gap-3 rounded-full bg-gold px-8 text-xs font-semibold tracking-[0.15em] text-bg-dark uppercase transition-all duration-300 hover:-translate-y-0.5 hover:bg-white hover:shadow-[0_16px_36px_rgba(199,166,106,0.22)]"
+                className="group flex h-[56px] items-center gap-3 rounded-lg bg-green-primary px-7 text-xs font-semibold tracking-[0.14em] text-white uppercase transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#214f35] hover:shadow-[0_16px_36px_rgba(50,117,74,0.2)]"
               >
                 Khám Phá Thực Đơn
                 <ArrowRight
@@ -295,13 +304,13 @@ export function Hero() {
                 />
               </Link>
               <Link
-                href="#story"
-                className="group flex items-center gap-3 text-xs font-semibold tracking-[0.15em] text-text uppercase"
+                href="#gallery"
+                className="group flex h-[56px] items-center gap-3 rounded-lg border border-green-primary/60 px-6 text-xs font-semibold tracking-[0.14em] text-text uppercase transition-colors hover:border-green-primary hover:bg-white/60"
               >
-                <span className="flex size-11 items-center justify-center rounded-full border border-text/30 transition-colors duration-300 group-hover:border-gold group-hover:text-gold">
+                <span className="flex size-7 items-center justify-center text-green-primary transition-colors duration-300 group-hover:text-gold">
                   <Play size={13} fill="currentColor" />
                 </span>
-                Xem Câu Chuyện
+                Xem Không Gian
               </Link>
             </motion.div>
 
@@ -309,20 +318,20 @@ export function Hero() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.4 }}
-              className="mt-16 flex items-center gap-2 text-[11px] tracking-[0.25em] text-text/40 uppercase"
+              className="mt-10 flex items-center gap-3 text-[11px] tracking-[0.22em] text-green-primary/70 uppercase"
             >
-              <Leaf size={13} />
+              <span className={styles.mouseIcon} />
               Cuộn Để Khám Phá
             </motion.div>
           </div>
 
           {/* RIGHT COLUMN — plate composition */}
           <LayoutGroup>
-            <div className="relative order-1 mx-auto aspect-square w-full max-w-[420px] sm:max-w-[500px] lg:order-2 lg:max-w-[640px]">
+            <div className={`${styles.dishStage} relative order-1 mx-auto aspect-square w-full max-w-[430px] sm:max-w-[520px] lg:order-2 lg:max-w-[690px]`}>
               {/* thin gold orbit rings */}
               <svg
                 viewBox="0 0 640 640"
-                className="pointer-events-none absolute inset-0 h-full w-full text-gold/40"
+                className="pointer-events-none absolute inset-0 h-full w-full text-gold/55"
                 aria-hidden="true"
               >
                 <circle
@@ -359,7 +368,7 @@ export function Hero() {
                     setIsDishModalOpen(true);
                   }
                 }}
-                className="absolute top-1/2 left-1/2 aspect-square w-[78vw] max-w-[360px] -translate-x-1/2 -translate-y-1/2 cursor-pointer overflow-hidden rounded-full bg-white shadow-[0_40px_80px_rgba(0,0,0,0.18),0_10px_20px_rgba(0,0,0,0.08)] transition-transform duration-500 ease-out hover:scale-[1.015] md:max-w-[420px] lg:max-w-[560px]">
+                className={`${styles.mainDish} absolute top-1/2 left-1/2 aspect-square w-[72vw] max-w-[340px] -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-transform duration-500 ease-out hover:scale-[1.025] md:max-w-[390px] lg:max-w-[490px]`}>
                 {/* vòng sáng vàng loé lên trong lúc hoán đổi */}
                 <motion.div
                   aria-hidden="true"
@@ -389,7 +398,7 @@ export function Hero() {
                       fill
                       priority={introPhase === "completed"}
                       sizes="(min-width: 1024px) 560px, (min-width: 768px) 420px, 360px"
-                      className="object-cover"
+                      className="object-contain drop-shadow-[0_32px_28px_rgba(33,26,18,0.22)]"
                     />
                   </motion.div>
                 </AnimatePresence>
@@ -407,7 +416,7 @@ export function Hero() {
                     onClick={() => handleSwap(index)}
                     disabled={isSwapping}
                     aria-label={`Xem ${dish.name}`}
-                    className={`animate-float-dish group absolute ${slot.position} ${slot.size} aspect-square cursor-pointer appearance-none overflow-hidden rounded-full border-4 border-white bg-transparent p-0 shadow-[0_16px_32px_rgba(0,0,0,0.15)] disabled:cursor-wait`}
+                    className={`${styles.satellite} animate-float-dish group absolute ${slot.position} ${slot.size} aspect-square cursor-pointer appearance-none rounded-full border border-[#d7c5a3] bg-[#fffdf9]/90 p-1 shadow-[0_16px_32px_rgba(63,49,31,0.16)] disabled:cursor-wait`}
                     style={{ animationDelay: `${slot.delay}s` }}
                   >
                     {/* vòng sáng vàng loé lên khi chính ô này vừa được chọn */}
@@ -439,13 +448,13 @@ export function Hero() {
                           alt={dish.alt}
                           fill
                           sizes="160px"
-                          className="object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+                          className="object-contain transition-transform duration-500 ease-out group-hover:scale-105"
                         />
                       </motion.div>
                     </AnimatePresence>
 
                     {/* lớp phủ đen làm tối nền, món ăn vẫn hiện rõ bên dưới */}
-                    <div className="absolute inset-0 bg-bg-dark/0 transition-colors duration-500 ease-out group-hover:bg-bg-dark/40" />
+                    <div className="absolute inset-0 rounded-full bg-black/0 transition-colors duration-500 ease-out group-hover:bg-black/35" />
 
                     {/* khung viền sáng "vẽ" dần vào bên trong, giống hiệu ứng Makhno */}
                     <div className="pointer-events-none absolute inset-[9%] scale-90 rounded-full border border-white/0 opacity-0 transition-all duration-500 ease-out group-hover:scale-100 group-hover:border-white/80 group-hover:opacity-100" />
@@ -469,14 +478,11 @@ export function Hero() {
               })}
 
               {/* plant-based badge */}
-              <div className="absolute top-1/2 right-[-2%] flex size-[110px] -translate-y-1/2 flex-col items-center justify-center rounded-full border border-gold/40 bg-bg-dark text-center text-white shadow-[0_20px_40px_rgba(0,0,0,0.25)] sm:size-[130px] lg:size-[150px]">
+              <div className="absolute top-1/2 right-[-1%] flex size-[104px] -translate-y-1/2 flex-col items-center justify-center rounded-full border border-gold/60 bg-[#174c31] text-center text-white shadow-[0_20px_40px_rgba(0,0,0,0.24)] sm:size-[122px] lg:size-[142px]">
                 <Leaf size={16} className="mb-1 text-gold" strokeWidth={1.5} />
                 <span className="font-heading text-xl sm:text-2xl">100%</span>
                 <span className="mt-1 text-[8px] leading-tight tracking-[0.15em] uppercase sm:text-[9px]">
                   Thuần Chay
-                </span>
-                <span className="text-[8px] leading-tight tracking-[0.15em] uppercase sm:text-[9px]">
-                  Trọn Vẹn
                 </span>
               </div>
 

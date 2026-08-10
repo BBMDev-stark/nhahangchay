@@ -49,9 +49,10 @@ export function BrandStory() {
       data-book-open={isBookOpen ? "true" : "false"}
     >
       <Image
-        src="/images/brand-book/story-stage-v2.png"
+        src="/images/brand-story-huong-sen/story-background.webp"
         alt=""
         fill
+        priority={false}
         sizes="100vw"
         className={styles.background}
       />
@@ -60,42 +61,41 @@ export function BrandStory() {
 
       <Container className={styles.layout}>
         <div className={styles.bookColumn}>
-          <span className={styles.pedestalLabel} aria-hidden="true">
-            LOTUS &amp; EARTH
-          </span>
           <InteractiveBrandBook onReadingChange={setIsBookOpen} />
         </div>
 
         <div className={styles.copy}>
           <div className={styles.eyebrow}>
-            <span className={styles.eyebrowLine}>
-              <i />
-            </span>
+            <span className={styles.eyebrowLine} />
             <span>Câu chuyện thương hiệu</span>
-            <span className={styles.eyebrowLine}>
-              <i />
-            </span>
+            <span className={styles.eyebrowLine} />
           </div>
 
           <OrnamentalRule compact />
 
           <h2 className={styles.heading}>
-            <span>Ẩm Thực Là</span>
-            <span>Một Hành Trình</span>
-            <em>Trở Về Với Thiên Nhiên</em>
+            <span>Hương Sen –</span>
+            <span>Thanh Vị Từ Tâm</span>
           </h2>
+
+          <p className={styles.tagline}>
+            Tinh tế trong hương vị,
+            <br />
+            an nhiên trong từng trải nghiệm
+          </p>
 
           <OrnamentalRule />
 
           <p className={styles.description}>
-            Lotus &amp; Earth ra đời từ niềm tin rằng ẩm thực chay có thể vừa
-            tinh tế, vừa sang trọng. Chúng tôi chọn lọc từng nguyên liệu hữu cơ
-            theo mùa, kết hợp kỹ thuật fine dining hiện đại và tinh thần thiền
-            tịnh phương Đông để mang đến trải nghiệm trọn vẹn cho mọi giác quan.
+            Hương Sen ra đời với mong muốn mang đến những bữa chay thanh lịch,
+            gần gũi và trọn vẹn. Từ nguồn nguyên liệu được tuyển chọn kỹ lưỡng
+            đến cách chế biến chỉn chu, mỗi món ăn là sự hòa quyện giữa dinh
+            dưỡng, thẩm mỹ và sự an yên trong tâm hồn.
           </p>
 
           <Link href="/about" className={styles.cta}>
-            <span>Tìm Hiểu Thêm</span>
+            <LotusEmblem className={styles.ctaLotus} />
+            <span>Tìm hiểu thêm</span>
             <span aria-hidden="true" className={styles.ctaArrow}>
               →
             </span>

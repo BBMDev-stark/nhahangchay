@@ -61,31 +61,6 @@ export interface Ingredient {
   image: string;
 }
 
-export interface BlogPost {
-  id: string;
-  slug: string;
-  title: string;
-  excerpt: string;
-  content: string; // markdown-like plain text paragraphs
-  coverImage: string;
-  author: string;
-  publishedAt: string; // ISO
-  readingTime: number; // minutes
-  category: string;
-  tags: string[];
-}
-
-export interface Promotion {
-  id: string;
-  slug: string;
-  title: string;
-  description: string;
-  image: string;
-  validUntil: string; // ISO
-  type: "buffet" | "combo" | "voucher";
-  discount?: string;
-}
-
 export interface FaqItem {
   id: string;
   question: string;

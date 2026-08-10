@@ -7,7 +7,7 @@ import { JsonLd, buildBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Không Gian",
-  description: "Thư viện hình ảnh không gian sang trọng, tinh tế của nhà hàng chay Lotus & Earth.",
+  description: "Hình ảnh nhận diện, mặt tiền và những món chay gợi ý của Nhà hàng chay Hương Sen.",
   alternates: { canonical: "/gallery" },
 };
 
@@ -22,9 +22,9 @@ export default function GalleryPage() {
       />
       <PageHeader
         eyebrow="Không Gian"
-        title="Luxury Gallery"
-        description="Một hành trình thị giác qua từng góc nhỏ của Lotus & Earth."
-        image="/images/hero/gallery-header.jpg"
+        title="Khoảnh khắc Hương Sen"
+        description="Màu xanh an lành, sắc hồng cánh sen và những món chay được chăm chút."
+        image="/brand/huong-sen-facade.png"
       />
       <section className="section-padding bg-bg-primary">
         <Container>

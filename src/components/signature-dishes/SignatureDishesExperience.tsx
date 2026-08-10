@@ -115,7 +115,7 @@ export function SignatureDishesExperience() {
       tabIndex={0}
       onKeyDown={handleKeyDown}
       aria-roledescription="bộ sưu tập món ăn tương tác"
-      aria-label="Món đặc trưng của Lotus & Earth"
+      aria-label="Món chay gợi ý của Hương Sen"
     >
       <div className={styles.background} aria-hidden="true">
         <span className={styles.backgroundRaster} />

@@ -3,7 +3,7 @@ import type { IntroConfig } from "@/components/intro/types";
 
 /**
  * Nguồn cấu hình duy nhất cho intro hiện tại:
- * Fork loading → editorial gate → Living Lotus → fog reveal → website.
+ * Fork loading → editorial gate → Hương Sen → fog reveal → website.
  *
  * Các cấu hình 2.5D, cửa, panel phụ và layered renderer cũ đã được loại bỏ.
  */
@@ -11,9 +11,9 @@ export const introConfig: IntroConfig = {
   enabled: true,
 
   brandName: siteConfig.name,
-  enterLabel: "Khám Phá Món Ăn",
-  skipLabel: "Bỏ Qua Nghi Thức",
-  exploreHintLabel: "Di chuyển lên món ăn để gọi ánh sáng",
+  enterLabel: "Bước Vào Hương Sen",
+  skipLabel: "Bỏ Qua Giới Thiệu",
+  exploreHintLabel: "Di chuyển đến món ăn để gọi ánh sáng",
 
   assets: {
     scene: "/images/intro/living-lotus-hero-v4.webp",

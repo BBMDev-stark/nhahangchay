@@ -8,9 +8,10 @@ export function ReservationSection() {
     <section id="reservation" className="section-padding bg-bg-primary">
       <Container className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
         <ImageReveal
-          src="/images/hero/reservation.jpg"
-          alt="Đặt bàn tại Lotus & Earth"
+          src="/images/spaces/huong-sen-space-01.png"
+          alt="Không gian bàn dài ấm cúng tại nhà hàng chay Hương Sen"
           className="hidden h-[560px] w-full rounded-lg lg:block"
+          imgClassName="object-center"
           sizes="50vw"
         />
         <div>

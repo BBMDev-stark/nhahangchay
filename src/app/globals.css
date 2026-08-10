@@ -1,21 +1,21 @@
 @import "tailwindcss";
 
 /* ==========================================================================
-   DESIGN TOKENS — LOTUS & EARTH / Luxury Vegetarian Fine Dining
+   DESIGN TOKENS — HƯƠNG SEN / European botanical vegetarian dining
    ========================================================================== */
 :root {
   /* Colors */
-  --color-bg-primary: #f7f6f2;
-  --color-green-primary: #1f5133;
-  --color-green-secondary: #2e6b46;
-  --color-gold: #b08d57;
-  --color-bg-dark: #0f1611;
+  --color-bg-primary: #fbf9f4;
+  --color-green-primary: #32754a;
+  --color-green-secondary: #6f9a7c;
+  --color-gold: #b79a5a;
+  --color-bg-dark: #173d29;
   --color-white: #ffffff;
-  --color-text: #1f1f1f;
-  --color-border: #e8e8e8;
+  --color-text: #27231f;
+  --color-border: #dfe8e1;
   --color-surface: #ffffff;
   --color-surface-raised: #ffffff;
-  --color-burgundy: #4a151d;
+  --color-burgundy: #eb298c;
 
   /* Fonts */
   --font-fraunces: "Fraunces";
@@ -202,31 +202,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
-   WEBSITE THEME — EUROPEAN NOCTURNE
+   WEBSITE THEME — HƯƠNG SEN BOTANICAL EUROPEAN
    Scoped to the destination website so the intro remains visually isolated.
    ========================================================================== */
 .site-theme-european {
-  --color-bg-primary: #0d0b09;
-  --color-bg-dark: #070605;
-  --color-surface: #15110e;
-  --color-surface-raised: #1d1712;
-  --color-green-primary: #9ba58f;
-  --color-green-secondary: #66725f;
-  --color-gold: #c7a66a;
-  --color-white: #f3ede2;
-  --color-text: #e8e0d4;
-  --color-border: #3a3025;
-  --color-burgundy: #4a151d;
+  --color-bg-primary: #fbf9f4;
+  --color-bg-dark: #173d29;
+  --color-surface: #ffffff;
+  --color-surface-raised: #f6f1e7;
+  --color-green-primary: #32754a;
+  --color-green-secondary: #6f9a7c;
+  --color-gold: #b79a5a;
+  --color-white: #ffffff;
+  --color-text: #27231f;
+  --color-border: #dfe8e1;
+  --color-burgundy: #eb298c;
 
-  color-scheme: dark;
+  color-scheme: light;
   min-height: 100vh;
   width: 100%;
   overflow-x: clip;
-  scrollbar-color: #62513c #0d0b09;
+  scrollbar-color: #b79a5a #fbf9f4;
   color: var(--color-text);
   background:
-    radial-gradient(circle at 74% 8%, rgba(199, 166, 106, 0.055), transparent 25rem),
-    radial-gradient(circle at 8% 34%, rgba(74, 21, 29, 0.08), transparent 28rem),
+    radial-gradient(circle at 74% 8%, rgba(183, 154, 90, 0.06), transparent 25rem),
+    radial-gradient(circle at 8% 34%, rgba(235, 41, 140, 0.04), transparent 28rem),
     var(--color-bg-primary);
 }
 
@@ -244,7 +244,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .site-theme-european .luxury-map {
-  filter: grayscale(1) sepia(0.18) brightness(0.62) contrast(1.18);
+  filter: sepia(0.06) saturate(0.9) brightness(1.03) contrast(0.94);
 }
 
 .site-theme-european .brand-story-image img {

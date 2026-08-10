@@ -105,7 +105,7 @@ export function ChefRecommendation() {
               <LotusOrnament className={styles.dishLotus} />
               <span className={styles.dishCode}>DISH {dishNumber}</span>
               <span className={styles.dishRule} />
-              <span className={styles.brand}>LOTUS &amp; EARTH</span>
+              <span className={styles.brand}>HƯƠNG SEN</span>
             </figcaption>
           </div>
         </figure>

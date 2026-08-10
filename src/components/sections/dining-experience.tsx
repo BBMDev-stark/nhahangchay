@@ -7,7 +7,7 @@ const EXPERIENCES = [
   {
     number: "01",
     title: "Chef’s Table",
-    description: "Trải nghiệm omakase độc quyền cùng đầu bếp trưởng.",
+    description: "Bữa ăn chay ấm cúng dành cho gia đình và nhóm bạn.",
   },
   {
     number: "02",
@@ -17,7 +17,7 @@ const EXPERIENCES = [
   {
     number: "03",
     title: "Garden Terrace",
-    description: "Bàn ngoài trời giữa khu vườn Nhật xanh mát.",
+    description: "Không gian nhẹ nhàng cho một bữa ăn thân tình.",
   },
 ] as const;
 
@@ -90,7 +90,7 @@ export function DiningExperience() {
 
           <OrnamentalRule />
 
-          <p className={styles.brand}>Lotus &amp; Earth</p>
+          <p className={styles.brand}>Hương Sen</p>
         </motion.header>
 
         <div className={styles.experiences}>

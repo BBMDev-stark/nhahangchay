@@ -14,7 +14,7 @@ export function FloatingButton() {
     >
       <Link
         href="/reservation"
-        className="text-button flex items-center gap-2 rounded-full border border-gold/50 bg-gold px-5 py-3.5 text-bg-dark shadow-lg shadow-black/30 transition hover:bg-white"
+        className="text-button flex items-center gap-2 rounded-full border border-green-primary/40 bg-green-primary px-5 py-3.5 text-white shadow-lg shadow-green-primary/20 transition hover:-translate-y-0.5 hover:bg-[#1f5133]"
       >
         <CalendarCheck size={16} />
         <span className="hidden sm:inline">Đặt Bàn</span>

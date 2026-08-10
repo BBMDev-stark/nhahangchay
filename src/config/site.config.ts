@@ -1,46 +1,45 @@
-/**
- * Cấu hình thương hiệu trung tâm — TÊN GIẢ ĐỊNH TẠM THỜI.
- * Toàn bộ SEO, Footer, JSON-LD Schema đều đọc từ đây.
- * Khi có thông tin thật, chỉ cần sửa file này, không cần sửa rải rác trong code.
- */
+/** Thông tin thương hiệu trung tâm của Nhà hàng chay Hương Sen. */
 export const siteConfig = {
-  name: "LOTUS & EARTH",
-  shortName: "Lotus & Earth",
-  tagline: "Fine Vegetarian Dining",
+  name: "NHÀ HÀNG CHAY HƯƠNG SEN",
+  shortName: "Hương Sen",
+  tagline: "Thanh vị từ tâm",
   description:
-    "Nhà hàng chay cao cấp Lotus & Earth — nơi ẩm thực thực vật gặp gỡ nghệ thuật tinh tế, tôn vinh nguyên liệu hữu cơ theo mùa trong không gian thiền tịnh, sang trọng.",
-  url: "https://lotusandearth.example.com",
-  ogImage: "/images/hero/og-cover.jpg",
+    "Nhà hàng chay Hương Sen tại 778/2 Nguyễn Kiệm, Phường Đức Nhuận, TP. Hồ Chí Minh — món chay Việt đa dạng trong không gian ấm cúng và thanh tịnh.",
+  url: "http://localhost:3000",
+  logoImage: "/brand/huong-sen-logo-transparent-v3.png",
+  ogImage: "/og.png",
   locale: "vi_VN",
   keywords: [
-    "nhà hàng chay cao cấp",
-    "fine dining vegetarian",
-    "nhà hàng chay sang trọng",
-    "ẩm thực chay hữu cơ",
-    "vegan fine dining",
+    "nhà hàng chay Hương Sen",
+    "nhà hàng chay Nguyễn Kiệm",
+    "quán chay Phú Nhuận",
+    "món chay Việt",
+    "cơm chay Hương Sen",
   ],
   contact: {
-    phone: "+84 28 1234 5678",
-    email: "reservation@lotusandearth.example.com",
+    phone: "0909 277 888",
+    phoneHref: "+84909277888",
+    email: "comchayhuongsen@gmail.com",
     address: {
-      street: "12 Đường Nguyễn Huệ",
-      district: "Quận 1",
+      street: "778/2 Đường Nguyễn Kiệm",
+      district: "Phường Đức Nhuận",
       city: "TP. Hồ Chí Minh",
       country: "Việt Nam",
       postalCode: "700000",
     },
     mapEmbedUrl:
-      "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.4!2d106.7009!3d10.7769",
-    coordinates: { lat: 10.7769, lng: 106.7009 },
+      "https://www.google.com/maps?q=Nh%C3%A0%20h%C3%A0ng%20chay%20H%C6%B0%C6%A1ng%20Sen%2C%20778%2F2%20Nguy%E1%BB%85n%20Ki%E1%BB%87m%2C%20Ph%C3%BA%20Nhu%E1%BA%ADn%2C%20TP.%20H%E1%BB%93%20Ch%C3%AD%20Minh&output=embed",
+    mapUrl:
+      "https://www.google.com/maps/search/?api=1&query=Nh%C3%A0%20h%C3%A0ng%20chay%20H%C6%B0%C6%A1ng%20Sen%2C%20778%2F2%20Nguy%E1%BB%85n%20Ki%E1%BB%87m%2C%20Ph%C3%BA%20Nhu%E1%BA%ADn%2C%20TP.%20H%E1%BB%93%20Ch%C3%AD%20Minh",
+    directionsUrl:
+      "https://www.google.com/maps/dir/?api=1&destination=Nh%C3%A0%20h%C3%A0ng%20chay%20H%C6%B0%C6%A1ng%20Sen%2C%20778%2F2%20Nguy%E1%BB%85n%20Ki%E1%BB%87m%2C%20Ph%C3%BA%20Nhu%E1%BA%ADn%2C%20TP.%20H%E1%BB%93%20Ch%C3%AD%20Minh",
   },
   openingHours: [
-    { days: "Thứ Hai - Thứ Sáu", hours: "11:00 - 22:00" },
-    { days: "Thứ Bảy - Chủ Nhật", hours: "10:00 - 23:00" },
+    { days: "Mỗi ngày", hours: "08:00 - 14:00" },
+    { days: "Buổi chiều", hours: "16:00 - 21:00" },
   ],
   social: {
-    instagram: "https://instagram.com/lotusandearth",
-    facebook: "https://facebook.com/lotusandearth",
-    tiktok: "https://tiktok.com/@lotusandearth",
+    facebook: "https://www.facebook.com/comchayhuongsen143hvh",
   },
 } as const;
 

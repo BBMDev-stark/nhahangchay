@@ -11,6 +11,7 @@ import {
   type PointerEvent as ReactPointerEvent,
 } from "react";
 import styles from "./interactive-brand-book.module.css";
+import { menuPages, type MenuPageData } from "./menu-book-data";
 
 type BookState = "front" | "reading" | "back";
 type BookOrientation = "portrait" | "landscape";
@@ -35,126 +36,70 @@ type PageFlipInstance = {
   off: (eventName: string) => void;
 };
 
-type StorySpread = {
-  chapter: string;
-  number: string;
-  title: string;
-  lead: string;
-  paragraph: string;
-  quote: string;
-  image: string;
-  imageAlt: string;
-  caption: string;
-};
-
-const spreads: StorySpread[] = [
-  {
-    chapter: "Khởi nguyên",
-    number: "I",
-    title: "Một khoảng lặng giữa lòng thành phố",
-    lead:
-      "Lotus & Earth bắt đầu từ một câu hỏi giản dị: liệu một bữa ăn có thể vừa thanh sạch, vừa mang vẻ đẹp của một nghi lễ?",
-    paragraph:
-      "Ánh sáng, vật liệu và từng khoảng trống đều dẫn thực khách trở về với cảm giác nguyên bản. Ở đó, ẩm thực chay trở thành một ngôn ngữ riêng — tinh tế, sâu sắc và đầy cảm xúc.",
-    quote: "Mọi hành trình trở về đều bắt đầu bằng một khoảng lặng.",
-    image: "/images/brand-book/chapter-origin.png",
-    imageAlt: "Không gian châu Âu thanh lịch của Lotus & Earth",
-    caption: "Không gian · Tĩnh tại · Khởi nguồn",
-  },
-  {
-    chapter: "Từ đất và mùa",
-    number: "II",
-    title: "Thiên nhiên viết nên thực đơn",
-    lead:
-      "Mỗi mùa mang đến một sắc độ, một kết cấu và một câu chuyện khác nhau. Chúng tôi lắng nghe những thay đổi ấy trước khi bắt đầu một món ăn.",
-    paragraph:
-      "Từ những nông trại hữu cơ, củ sen, lá non, thảo mộc và hoa ăn được bước vào căn bếp ở thời điểm trọn vị nhất — rồi được nâng niu bằng sự tiết chế.",
-    quote: "Khi nguyên liệu đã cất tiếng nói, không điều gì cần được thêm vào.",
-    image: "/images/brand-book/chapter-earth.png",
-    imageAlt: "Nguyên liệu theo mùa với củ sen và thảo mộc",
-    caption: "Đất · Mùa · Nguyên liệu thuần khiết",
-  },
-  {
-    chapter: "Nghệ thuật chế biến",
-    number: "III",
-    title: "Kỹ thuật phục vụ cảm xúc",
-    lead:
-      "Sau vẻ đẹp tĩnh tại là một quá trình chính xác: nhiệt độ, thời gian, cấu trúc và hương thơm được cân chỉnh như những nốt nhạc.",
-    paragraph:
-      "Kỹ thuật fine dining châu Âu gặp tinh thần thiền tịnh phương Đông. Mỗi chiếc đĩa là một cảnh quan thu nhỏ, nơi mọi chi tiết đều có lý do để hiện diện.",
-    quote: "Tinh tế không nằm ở sự phô diễn, mà ở điều còn đọng lại.",
-    image: "/images/brand-book/chapter-craft.png",
-    imageAlt: "Đầu bếp hoàn thiện món chay Lotus & Earth",
-    caption: "Kỹ nghệ · Cân bằng · Trọn vị sống",
-  },
-];
-
-const chapterFromPage = (page: number) =>
-  Math.max(0, Math.min(spreads.length - 1, Math.floor((page - 1) / 2)));
-
 const stateFromPage = (page: number, lastPage: number): BookState => {
   if (page === 0) return "front";
   if (page === lastPage) return "back";
   return "reading";
 };
 
-function LotusMark({ className = "" }: { className?: string }) {
+function MenuRows({ items }: { items: MenuPageData["items"] }) {
+  const descriptionFor = (name: string) => {
+    if (/súp|canh|lẩu|phở|bún|mì|miến|hủ tiếu|cháo/i.test(name)) return "Nước dùng thanh ngọt, rau thơm và nguyên liệu chay chọn lọc.";
+    if (/cuốn|bánh hỏi|bò bía/i.test(name)) return "Cuốn tươi trong ngày, hài hòa giữa rau xanh và phần nhân đậm vị.";
+    if (/nước|soda|cà phê|sữa|trà|yaourt|cam|dừa|đá me/i.test(name)) return "Thức uống thanh mát, cân bằng vị và phục vụ theo yêu cầu.";
+    if (/cơm|xôi/i.test(name)) return "Hạt cơm dẻo thơm, phối cùng rau củ và gia vị vừa vặn.";
+    if (/gỏi|rau|bó xôi|bông|mướp|cà tím|măng/i.test(name)) return "Rau củ tươi, chế biến nhẹ nhàng để giữ trọn độ giòn và vị ngọt.";
+    if (/pizza|mì ý|phô mai|đút lò/i.test(name)) return "Phong vị Âu thanh lịch, hoàn thiện với kết cấu và hương thơm cân bằng.";
+    return "Món chay được chăm chút từ nguyên liệu đến cách nêm nếm và trình bày.";
+  };
+
   return (
-    <svg
-      aria-hidden="true"
-      className={className}
-      viewBox="0 0 64 52"
-      fill="none"
-    >
-      <path
-        d="M32 46C21 38 17 27 23 13c8 6 11 15 9 27M32 46c11-8 15-19 9-33-8 6-11 15-9 27M31 46C17 45 8 37 7 24c9 1 17 7 23 17M33 46c14-1 23-9 24-22-9 1-17 7-23 17M31 46C18 51 8 48 2 38c9-3 18-1 28 6M33 46c13 5 23 2 29-8-9-3-18-1-28 6M32 31C25 23 26 12 32 3c6 9 7 20 0 28Z"
-        stroke="currentColor"
-        strokeWidth="1.25"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
+    <div className={styles.menuRows}>
+      {items.map((entry) => (
+        <div className={styles.menuRow} key={`${entry.name}-${entry.price}`}>
+          <span className={styles.itemName}>{entry.name}</span>
+          <span className={styles.leader} aria-hidden="true" />
+          <span className={styles.itemPrice}>{entry.price}</span>
+          <small>{descriptionFor(entry.name)}</small>
+        </div>
+      ))}
+    </div>
   );
 }
 
-function TextPage({ spread }: { spread: StorySpread }) {
+function MenuPage({ page, index }: { page: MenuPageData; index: number }) {
   return (
-    <article className={styles.textPage}>
-      <div className={styles.pageOrnament}>
-        <LotusMark />
+    <article className={`${styles.menuPage} ${page.dense ? styles.menuPageDense : ""}`}>
+      <header className={styles.menuHero}>
+        <div className={styles.menuPhotoArch}>
+          <Image
+            src={page.image}
+            alt={`Món ăn trong nhóm ${page.title}`}
+            fill
+            sizes="(max-width: 767px) 42vw, 210px"
+            className={styles.menuHeroImage}
+          />
+        </div>
+        <div className={styles.menuHeroCopy}>
+          <span>Nhà hàng chay Hương Sen</span>
+          <h3>{page.title}</h3>
+          <em>{page.english}</em>
+        </div>
+      </header>
+      <div className={styles.menuBody}>
+        <MenuRows items={page.items} />
+        {page.secondItems && page.secondTitle ? (
+          <section className={styles.secondMenuSection}>
+            <h4><span />{page.secondTitle}<span /></h4>
+            <MenuRows items={page.secondItems} />
+          </section>
+        ) : null}
       </div>
-      <p className={styles.chapter}>
-        <span>{spread.number}</span>
-        {spread.chapter}
-      </p>
-      <h3>{spread.title}</h3>
-      <div className={styles.rule}>
-        <i />
-      </div>
-      <p className={styles.lead}>{spread.lead}</p>
-      <p>{spread.paragraph}</p>
-      <blockquote>{spread.quote}</blockquote>
-      <span className={styles.pageNumber}>{spread.number}</span>
+      <footer className={styles.menuFooter}>
+        <span>778/2 Nguyễn Kiệm · TP. Hồ Chí Minh</span>
+        <b>{String(index + 1).padStart(2, "0")}</b>
+      </footer>
     </article>
-  );
-}
-
-function ImagePage({ spread }: { spread: StorySpread }) {
-  return (
-    <figure className={styles.imagePage}>
-      <div className={styles.imageMat}>
-        <Image
-          src={spread.image}
-          alt={spread.imageAlt}
-          fill
-          sizes="(max-width: 767px) 86vw, (max-width: 1199px) 44vw, 30vw"
-          className={styles.chapterImage}
-        />
-        <span className={styles.imageVeil} />
-      </div>
-      <figcaption>{spread.caption}</figcaption>
-      <span className={styles.pageNumber}>{spread.number}</span>
-    </figure>
   );
 }
 
@@ -205,8 +150,8 @@ export function InteractiveBrandBook({
   const [orientation, setOrientation] =
     useState<BookOrientation>("landscape");
 
-  const lastPage = spreads.length * 2 + 1;
-  const activeChapter = chapterFromPage(currentPage);
+  const lastPage = menuPages.length + 1;
+  const activeMenuPage = Math.max(0, Math.min(menuPages.length - 1, currentPage - 1));
   const isFront = currentPage === 0;
   const isBack = currentPage === lastPage;
 
@@ -412,7 +357,7 @@ export function InteractiveBrandBook({
             className={styles.bookMount}
             role={isFront ? "button" : "group"}
             tabIndex={isFront ? 0 : -1}
-          aria-label="Sách câu chuyện Lotus & Earth"
+            aria-label="Mở thực đơn Hương Sen"
             onPointerEnter={updateIllumination}
             onPointerMove={updateIllumination}
             onPointerLeave={() => setIsIlluminated(false)}
@@ -438,33 +383,25 @@ export function InteractiveBrandBook({
           >
           <CoverPage
             side="front"
-            src="/images/brand-book/front-cover.png"
-            alt="Bìa sách Lotus & Earth"
+            src="/images/brand-story-huong-sen/book-front-clean-v2.webp"
+            alt="Bìa sách Hương Sen"
           />
 
-          {spreads.flatMap((spread) => [
+          {menuPages.map((page, index) => (
             <div
-              key={`${spread.number}-text`}
+              key={page.title + page.english}
               className={`${styles.flipPage} ${styles.paperPage}`}
               data-density="soft"
               data-book-page
             >
-              <TextPage spread={spread} />
-            </div>,
-            <div
-              key={`${spread.number}-image`}
-              className={`${styles.flipPage} ${styles.paperPage}`}
-              data-density="soft"
-              data-book-page
-            >
-              <ImagePage spread={spread} />
-            </div>,
-          ])}
+              <MenuPage page={page} index={index} />
+            </div>
+          ))}
 
           <CoverPage
             side="back"
-            src="/images/brand-book/back-cover.png"
-            alt="Bìa kết thúc sách Lotus & Earth"
+            src="/images/brand-story-huong-sen/book-back-clean-v2.webp"
+            alt="Bìa kết thúc sách Hương Sen"
           />
           </div>
         </div>
@@ -480,16 +417,16 @@ export function InteractiveBrandBook({
         {isFront ? (
           <>
             <BookOpen />
-            Mở sách để khám phá câu chuyện
+            Mở sách để khám phá thực đơn
           </>
         ) : isBack ? (
           <>
             <RotateCcw />
-            Mở lại chương cuối
+            Xem lại trang cuối
           </>
         ) : (
           <>
-            {activeChapter + 1} / {spreads.length}
+            {activeMenuPage + 1} / {menuPages.length}
             <span>·</span>
             Kéo góc trang, chạm mép sách hoặc dùng phím mũi tên
           </>

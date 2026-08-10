@@ -219,6 +219,11 @@ export function useDishExperience({
       engine.snapDuration = engine.reducedMotion
         ? CAROUSEL_SNAP_REDUCED_MS
         : CAROUSEL_SNAP_MS;
+      // Keep React copy locked to the last fully-centred dish while the
+      // photographs are still travelling. This ref must change immediately;
+      // waiting for the reducer effect leaves one RAF where copy and photo can
+      // point at neighbouring dishes.
+      phaseRef.current = "snapping";
       dispatch({ type: "SNAP_START" });
     },
     [],
@@ -260,15 +265,16 @@ export function useDishExperience({
         if (t >= 1) {
           engine.progress = engine.snapTarget;
           const index = normalizeIndex(Math.round(engine.progress), count);
+          phaseRef.current = "explore";
+          activeIndexRef.current = index;
           dispatch({ type: "SNAP_DONE", index });
         }
       }
 
-      if (
-        phase === "explore" ||
-        phase === "dragging" ||
-        phase === "snapping"
-      ) {
+      // Only publish a new dish after it is actually centred. Updating from a
+      // rounded in-flight progress value made the caption switch at 50% while
+      // the previous photograph was still visually dominant.
+      if (phase === "explore") {
         const nextIndex = normalizeIndex(Math.round(engine.progress), count);
         if (nextIndex !== activeIndexRef.current) {
           activeIndexRef.current = nextIndex;
@@ -365,6 +371,7 @@ export function useDishExperience({
       -0.19,
       0.19,
     );
+    phaseRef.current = "dragging";
     dispatch({ type: "DRAG_START" });
     return true;
   }, []);
@@ -680,7 +687,6 @@ export function useDishExperience({
         moved: false,
         horizontal: false,
       };
-      event.currentTarget.setPointerCapture(event.pointerId);
       engineRef.current.lastInputAt = performance.now();
       engineRef.current.velocity = 0;
     },
@@ -712,15 +718,14 @@ export function useDishExperience({
         if (Math.abs(totalX) < 6 && Math.abs(totalY) < 6) return;
         if (Math.abs(totalY) > Math.abs(totalX) * 1.2) {
           pointerSessionRef.current = null;
-          if (event.currentTarget.hasPointerCapture(event.pointerId)) {
-            event.currentTarget.releasePointerCapture(event.pointerId);
-          }
           return;
         }
         session.horizontal = true;
         session.moved = true;
+        event.currentTarget.setPointerCapture(event.pointerId);
         engineRef.current.dragging = true;
         engineRef.current.interacting = true;
+        phaseRef.current = "dragging";
         dispatch({ type: "DRAG_START" });
       }
 

@@ -7,7 +7,7 @@ import { JsonLd, buildBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Đặt Bàn",
-  description: `Đặt bàn trực tuyến tại ${siteConfig.name} — nhà hàng chay cao cấp. Xác nhận nhanh chóng, phục vụ tận tâm.`,
+  description: `Gửi yêu cầu đặt bàn tại ${siteConfig.name}. Nhà hàng sẽ liên hệ lại để xác nhận.`,
   alternates: { canonical: "/reservation" },
 };
 
@@ -22,9 +22,9 @@ export default function ReservationPage() {
       />
       <PageHeader
         eyebrow="Đặt Bàn"
-        title="Reserve Your Table"
-        description="Giữ chỗ trước để đảm bảo trải nghiệm trọn vẹn nhất tại Lotus & Earth."
-        image="/images/hero/reservation.jpg"
+        title="Hẹn một bữa chay an lành"
+        description="Gửi thông tin của bạn, Hương Sen sẽ liên hệ để xác nhận chỗ ngồi phù hợp."
+        image="/brand/huong-sen-facade.png"
       />
       <section className="section-padding bg-surface">
         <Container className="mx-auto max-w-3xl">

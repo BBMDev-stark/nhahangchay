@@ -62,7 +62,7 @@ export function ReservationForm() {
         <CheckCircle2 className="text-green-primary" size={40} />
         <h3 className="font-heading text-2xl text-text">Đặt Bàn Thành Công</h3>
         <p className="max-w-sm text-sm text-text/60">
-          Cảm ơn bạn đã đặt bàn tại Lotus &amp; Earth. Chúng tôi sẽ liên hệ xác nhận trong vòng 30 phút.
+          Cảm ơn bạn đã gửi yêu cầu đặt bàn tại Hương Sen. Nhà hàng sẽ liên hệ để xác nhận trong thời gian sớm nhất.
         </p>
         <Button variant="outline" size="sm" onClick={() => setSuccess(false)}>
           Đặt Thêm Lượt Khác

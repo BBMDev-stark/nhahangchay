@@ -6,7 +6,7 @@ import { siteConfig } from "@/config/site.config";
 import { InstagramIcon } from "@/components/shared/social-icons";
 
 export function InstagramGallery() {
-  const images = galleryImages.slice(9, 15);
+  const images = galleryImages.slice(0, 6);
 
   return (
     <section className="bg-bg-dark py-20">
@@ -14,10 +14,10 @@ export function InstagramGallery() {
         <div className="mb-10 flex items-center justify-center gap-3 text-white">
           <InstagramIcon width={20} height={20} className="text-gold" />
           <Link
-            href={siteConfig.social.instagram}
+            href={siteConfig.social.facebook}
             className="text-eyebrow text-white hover:text-gold"
           >
-            @lotusandearth
+            @comchayhuongsen
           </Link>
         </div>
         <div className="grid grid-cols-3 gap-2 md:grid-cols-6">

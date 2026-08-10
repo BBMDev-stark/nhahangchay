@@ -13,8 +13,8 @@ export function buildRestaurantSchema() {
     image: `${siteConfig.url}${siteConfig.ogImage}`,
     url: siteConfig.url,
     telephone: siteConfig.contact.phone,
-    servesCuisine: ["Vegetarian", "Vegan", "Fine Dining"],
-    priceRange: "$$$",
+    servesCuisine: ["Vegetarian", "Vietnamese"],
+    priceRange: "$$",
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.contact.address.street,
@@ -23,17 +23,20 @@ export function buildRestaurantSchema() {
       addressCountry: siteConfig.contact.address.country,
       postalCode: siteConfig.contact.address.postalCode,
     },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: siteConfig.contact.coordinates.lat,
-      longitude: siteConfig.contact.coordinates.lng,
-    },
-    openingHoursSpecification: siteConfig.openingHours.map((oh) => ({
-      "@type": "OpeningHoursSpecification",
-      dayOfWeek: oh.days,
-      opens: oh.hours.split(" - ")[0],
-      closes: oh.hours.split(" - ")[1],
-    })),
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        opens: "08:00",
+        closes: "14:00",
+      },
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        opens: "16:00",
+        closes: "21:00",
+      },
+    ],
     sameAs: Object.values(siteConfig.social),
   };
 }
@@ -44,9 +47,7 @@ export function buildOrganizationSchema() {
     "@type": "Organization",
     name: siteConfig.name,
     url: siteConfig.url,
-    // Dùng asset có thật để JSON-LD không trả về URL 404 trên production.
-    // Khi có logo chính thức, chỉ cần thêm `logoImage` vào siteConfig.
-    logo: `${siteConfig.url}${siteConfig.ogImage}`,
+    logo: `${siteConfig.url}${siteConfig.logoImage}`,
     sameAs: Object.values(siteConfig.social),
   };
 }

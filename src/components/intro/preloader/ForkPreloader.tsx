@@ -23,7 +23,7 @@ export function ForkPreloader({
   assetProgress,
   assetLoadError = false,
   forkRealSrc,
-  headline = ["TỪ ĐẤT", "TỪ SEN", "TỪ MÙA"],
+  headline = ["TỪ TÂM", "THÀNH VỊ", "HƯƠNG SEN"],
   minimumDuration = 3600,
   onComplete,
   reducedMotion = false,
@@ -216,10 +216,10 @@ export function ForkPreloader({
     <section
       ref={rootRef}
       className={styles.root}
-      aria-label="Đang tải trải nghiệm Lotus & Earth"
+      aria-label="Đang tải trải nghiệm Hương Sen"
       aria-live="polite"
     >
-      <div className={styles.logo}>LOTUS &amp; EARTH</div>
+      <div className={styles.logo}>HƯƠNG SEN</div>
 
       <div className={styles.composition}>
         <div className={`${styles.technical} ${styles.figure}`}>
@@ -238,7 +238,7 @@ export function ForkPreloader({
           <div ref={realRef} className={styles.realFork}>
             <Image
               src={forkRealSrc}
-              alt="Nĩa cán gỗ Lotus & Earth"
+              alt="Nĩa cán gỗ trong phần giới thiệu Hương Sen"
               fill
               priority
               sizes="(max-width: 767px) 72vw, 280px"
@@ -265,7 +265,7 @@ export function ForkPreloader({
         </div>
 
         <div className={`${styles.technical} ${styles.annotation}`}>
-          A REGENERATIVE FOOD SYSTEM CONNECTS SOIL, SEASON AND CRAFT.
+          MỖI MÓN CHAY LÀ SỰ GIAO HÒA CỦA NGUYÊN LIỆU, HƯƠNG VỊ VÀ TẤM LÒNG.
         </div>
         <span className={`${styles.guideLine} ${styles.outerGuide}`} />
         <span ref={counterRef} className={styles.counter}>00</span>

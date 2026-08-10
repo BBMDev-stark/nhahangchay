@@ -85,16 +85,16 @@ function SiteShellInner({
           <div className="intro-preflight__frame">
             <div className="intro-preflight__fork" />
             <div className="intro-preflight__headline">
-              <b>TỪ ĐẤT</b>
-              <b>TỪ SEN</b>
-              <b>TỪ MÙA</b>
+              <b>TỪ TÂM</b>
+              <b>THÀNH VỊ</b>
+              <b>HƯƠNG SEN</b>
             </div>
             <i className="intro-preflight__rule intro-preflight__rule--one" />
             <i className="intro-preflight__rule intro-preflight__rule--two" />
             <i className="intro-preflight__rule intro-preflight__rule--three" />
             <em>LOADING</em>
           </div>
-          <span>LOTUS &amp; EARTH</span>
+          <span>HƯƠNG SEN</span>
           <strong>00</strong>
         </div>
       )}

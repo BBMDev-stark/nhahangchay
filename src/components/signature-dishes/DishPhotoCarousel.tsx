@@ -79,7 +79,8 @@ export function DishPhotoCarousel({
         let y = exploreY;
         let scale = exploreScale * (1 - mode * 0.5);
         let opacity = exploreOpacity * (1 - mode);
-        let rotate = distance * (mobile ? -2.6 : -3.8);
+        // Keep the stage strictly 2.5D: flat image layers only.
+        let rotate = 0;
 
         if (engine.detailIndex === index) {
           x = exploreX + (detailX - exploreX) * mode;
@@ -112,7 +113,6 @@ export function DishPhotoCarousel({
         if (active && mode < 0.1) {
           y -= engine.hoverAmount * 8;
           scale *= 1 + engine.hoverAmount * 0.018;
-          rotate += engine.pointerTiltX * 0.9;
         }
 
         const brightness = 1 - Math.min(absolute * 0.17, 0.5);

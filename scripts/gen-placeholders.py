@@ -74,21 +74,11 @@ for i in range(1, 11):
     make_image(f"{BASE}/team/chef-{i:02d}.jpg", f"Chef {i:02d}", (700, 700), i)
     count += 1
 
-# Blog covers (15)
-for i in range(1, 16):
-    make_image(f"{BASE}/blog/blog-{i:02d}.jpg", f"Blog {i:02d}", (1200, 800), i)
-    count += 1
-
-# Promotions (6)
-for i in range(1, 7):
-    make_image(f"{BASE}/promotions/promo-{i:02d}.jpg", f"Promotion {i:02d}", (1200, 800), i)
-    count += 1
-
 # Hero / special images
 HERO_NAMES = [
     "hero-main", "brand-story", "dining-experience", "reservation",
     "about-story", "about-vision", "menu-header", "gallery-header",
-    "promotions-header", "blog-header", "contact-header", "og-cover",
+    "contact-header", "og-cover",
 ]
 for i, name in enumerate(HERO_NAMES, start=1):
     size = (1920, 1080) if name != "og-cover" else (1200, 630)

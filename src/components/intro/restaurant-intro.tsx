@@ -45,7 +45,7 @@ function HeroInterface({ hovered }: { hovered: boolean }) {
       >
         <div>
           <span className="lotus-hero-header__index">I.</span>
-          <span>LOTUS &amp; EARTH</span>
+          <span>HƯƠNG SEN</span>
         </div>
         <button type="button" onClick={skipIntro}>
           {introConfig.skipLabel}
@@ -61,27 +61,27 @@ function HeroInterface({ hovered }: { hovered: boolean }) {
           ease: EASE,
         }}
       >
-        <span>THE</span>
-        <h1>LIVING LOTUS</h1>
-        <p>Một hệ sinh thái có thể thưởng thức — từ đất, từ sen và từ mùa.</p>
+        <span>NHÀ HÀNG CHAY</span>
+        <h1>HƯƠNG SEN</h1>
+        <p>Thanh vị nuôi thân. An lành nuôi tâm.</p>
       </motion.div>
 
       <motion.aside
         className="lotus-hero-note lotus-hero-note--left"
         animate={{ opacity: visible && breakpoint !== "mobile" ? 1 : 0 }}
       >
-        <span>PLATE 01</span>
+        <span>MÓN 01</span>
         <i />
-        <p>Lotus root<br />Seasonal botanicals</p>
+        <p>Hạt sen<br />Rau củ thanh lành</p>
       </motion.aside>
 
       <motion.aside
         className="lotus-hero-note lotus-hero-note--right"
         animate={{ opacity: visible && breakpoint !== "mobile" ? 1 : 0 }}
       >
-        <span>ORIGIN 01</span>
+        <span>TỪ TÂM 01</span>
         <i />
-        <p>Earth becomes plate.<br />Plate becomes ritual.</p>
+        <p>Thanh vị nuôi thân.<br />An lành nuôi tâm.</p>
       </motion.aside>
 
       <motion.div
@@ -119,7 +119,7 @@ function ArchivalInterface() {
           transition={{ duration: reducedMotion ? 0.12 : 0.62, ease: EASE }}
         >
           <div className="lotus-archive-ui__header">
-            <span>LOTUS &amp; EARTH — OBJECT STUDY 01</span>
+            <span>HƯƠNG SEN — THANH VỊ TỪ TÂM</span>
             <button type="button" onClick={skipIntro}>
               {introConfig.skipLabel}
             </button>
@@ -140,15 +140,15 @@ function ArchivalInterface() {
                 transition={{ duration: reducedMotion ? 0.12 : 0.7, ease: EASE }}
                 aria-labelledby="lotus-archive-gate-title"
               >
-                <span>THE LIVING TABLE</span>
-                <h2 id="lotus-archive-gate-title">Từ đất, sen và mùa.</h2>
+                <span>NHÀ HÀNG CHAY HƯƠNG SEN</span>
+                <h2 id="lotus-archive-gate-title">Thanh vị từ tâm.</h2>
                 <p>
-                  Mỗi nguyên liệu mang theo ký ức của vùng đất đã nuôi dưỡng nó.
-                  Tại Lotus &amp; Earth, củ sen và thảo mộc theo mùa được nâng
-                  thành một nghi thức ẩm thực đương đại.
+                  Tại Hương Sen, mỗi món chay được chăm chút từ nguyên liệu lành,
+                  hương vị Việt và sự tận tâm — để mỗi bữa ăn trở thành một
+                  khoảng an yên.
                 </p>
                 <button type="button" onClick={beginRitual}>
-                  <span>Bước vào trải nghiệm</span>
+                  <span>Bước vào Hương Sen</span>
                 </button>
               </motion.section>
             )}
@@ -276,7 +276,7 @@ export function RestaurantIntro() {
       data-phase={phase}
       role="dialog"
       aria-modal="true"
-      aria-label={`Giới thiệu ${introConfig.brandName}: The Living Lotus`}
+      aria-label={`Giới thiệu ${introConfig.brandName}`}
       tabIndex={-1}
       animate={{ opacity: phase === "completed" ? 0 : 1 }}
       transition={{ duration: reducedMotion ? 0.12 : 0.42, ease: EASE }}
@@ -309,7 +309,7 @@ export function RestaurantIntro() {
             >
               <Image
                 src={sceneSrc}
-                alt="Món Living Lotus từ củ sen và thảo mộc theo mùa trên bệ đá"
+                alt="Cơm sen thanh vị của Nhà hàng chay Hương Sen"
                 fill
                 priority
                 sizes="100vw"
@@ -376,7 +376,7 @@ export function RestaurantIntro() {
             type="button"
             className="lotus-keeper-target"
             disabled={!isInteractive}
-            aria-label="Khám phá món Living Lotus và bước vào website"
+            aria-label="Khám phá món chay và bước vào website Hương Sen"
             data-hovered={hovered}
             onPointerEnter={() => setHovered(true)}
             onPointerLeave={() => setHovered(false)}
@@ -393,7 +393,7 @@ export function RestaurantIntro() {
             assetProgress={assetProgress}
             assetLoadError={assetLoadError}
             forkRealSrc={forkSrc}
-            headline={["TỪ ĐẤT", "TỪ SEN", "TỪ MÙA"]}
+            headline={["TỪ TÂM", "THÀNH VỊ", "HƯƠNG SEN"]}
             minimumDuration={introConfig.preloader.minimumDurationMs}
             reducedMotion={reducedMotion}
             onComplete={completePreloader}

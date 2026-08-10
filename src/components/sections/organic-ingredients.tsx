@@ -10,9 +10,9 @@ export function OrganicIngredients() {
     <section className="section-padding bg-surface">
       <Container>
         <SectionTitle
-          eyebrow="Nguyên Liệu Hữu Cơ"
+          eyebrow="Nguyên Liệu Tươi"
           title="Từ Nông Trại Đến Bàn Ăn"
-          description="Chúng tôi hợp tác trực tiếp với các nông trại hữu cơ trên khắp Việt Nam để đảm bảo nguồn nguyên liệu tươi ngon, minh bạch xuất xứ."
+          description="Rau củ, nấm và thảo mộc được lựa chọn kỹ để giữ vị thanh tự nhiên trong từng món chay."
           className="mb-14"
         />
         <div className="grid grid-cols-2 gap-6 lg:grid-cols-4">
