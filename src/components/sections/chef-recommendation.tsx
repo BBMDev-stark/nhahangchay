@@ -1,6 +1,4 @@
 import Image from "next/image";
-import { chefs } from "@/features/team/data/chefs";
-import { dishes } from "@/features/menu/data/dishes";
 import { chefRecommendation } from "@/features/menu/data/chef-recommendation";
 import { formatVND } from "@/lib/utils";
 import styles from "./chef-recommendation.module.css";
@@ -26,19 +24,6 @@ function LotusOrnament({ className }: { className?: string }) {
 }
 
 export function ChefRecommendation() {
-  const chef = chefs.find((item) => item.id === chefRecommendation.chefId);
-  const recommended = dishes.find(
-    (item) => item.id === chefRecommendation.dishId,
-  );
-
-  if (!chef || !recommended) {
-    return null;
-  }
-
-  const dishNumber = String(
-    Number(recommended.id.replace(/\D/g, "")),
-  ).padStart(2, "0");
-
   return (
     <section
       id="chef-recommendation"
@@ -63,29 +48,35 @@ export function ChefRecommendation() {
           </div>
 
           <h2 id="chef-recommendation-title" className={styles.title}>
-            {recommended.name}
+            {chefRecommendation.dishName}
           </h2>
 
-          <p className={styles.description}>{recommended.description}</p>
+          <p className={styles.description}>
+            {chefRecommendation.dishDescription}
+          </p>
 
           <div className={styles.chef}>
             <div className={styles.chefPortrait}>
               <Image
                 src={chefRecommendation.chefImage}
-                alt={`Chân dung ${chef.name}`}
+                alt={`Chân dung ${chefRecommendation.chefName}`}
                 fill
                 sizes="88px"
                 className={styles.chefPortraitImage}
               />
             </div>
             <div className={styles.chefIdentity}>
-              <p className={styles.chefName}>{chef.name}</p>
-              <p className={styles.chefRole}>{chef.role}</p>
+              <p className={`${styles.chefName} ${styles.chefNameLong}`}>
+                {chefRecommendation.chefName}
+              </p>
+              <p className={styles.chefRole}>{chefRecommendation.chefRole}</p>
             </div>
           </div>
 
           <div className={styles.priceRow}>
-            <p className={styles.price}>{formatVND(recommended.price)}</p>
+            <p className={styles.price}>
+              {formatVND(chefRecommendation.dishPrice)}
+            </p>
             <span aria-hidden="true" className={styles.priceRule} />
           </div>
         </div>
@@ -94,7 +85,7 @@ export function ChefRecommendation() {
           <div className={styles.imageViewport}>
             <Image
               src={chefRecommendation.dishImage}
-              alt={recommended.name}
+              alt={chefRecommendation.dishName}
               fill
               priority={false}
               sizes="(max-width: 900px) 92vw, 57vw"
@@ -103,7 +94,9 @@ export function ChefRecommendation() {
             <div aria-hidden="true" className={styles.imageShade} />
             <figcaption className={styles.dishLabel}>
               <LotusOrnament className={styles.dishLotus} />
-              <span className={styles.dishCode}>DISH {dishNumber}</span>
+              <span className={styles.dishCode}>
+                DISH {chefRecommendation.dishNumber}
+              </span>
               <span className={styles.dishRule} />
               <span className={styles.brand}>HƯƠNG SEN</span>
             </figcaption>

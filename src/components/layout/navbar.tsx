@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Search, ShoppingBag, ArrowRight } from "lucide-react";
 import { mainNav } from "@/config/nav.config";
@@ -14,11 +14,15 @@ import { cn } from "@/lib/utils";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const scrolledRef = useRef(false);
   const pathname = usePathname();
 
   useEffect(() => {
     function onScroll() {
-      setScrolled(window.scrollY > 40);
+      const nextScrolled = window.scrollY > 40;
+      if (nextScrolled === scrolledRef.current) return;
+      scrolledRef.current = nextScrolled;
+      setScrolled(nextScrolled);
     }
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
@@ -91,7 +95,7 @@ export function Navbar() {
               </span>
             </button>
             <Link
-              href="/reservation"
+              href="/#reservation"
               className="ml-1 flex h-[46px] items-center gap-3 whitespace-nowrap rounded-full border border-green-primary/40 bg-green-primary px-7 text-xs font-semibold tracking-[0.11em] text-white uppercase backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#214f35] hover:shadow-[0_14px_32px_rgba(50,117,74,0.18)]"
             >
               Đặt Bàn Ngay
@@ -129,7 +133,7 @@ export function Navbar() {
                 </Link>
               ))}
               <Link
-                href="/reservation"
+                href="/#reservation"
                 className="mt-2 flex items-center justify-center gap-2 rounded-full border border-green-primary/40 bg-green-primary px-6 py-4 text-xs font-semibold tracking-wider text-white uppercase"
               >
                 Đặt Bàn Ngay

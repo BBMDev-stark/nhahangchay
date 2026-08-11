@@ -5,7 +5,7 @@ import { ImageReveal } from "@/components/shared/image-reveal";
 
 export function ReservationSection() {
   return (
-    <section id="reservation" className="section-padding bg-bg-primary">
+    <section id="reservation" className="section-padding scroll-mt-24 bg-bg-primary">
       <Container className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
         <ImageReveal
           src="/images/spaces/huong-sen-space-01.png"

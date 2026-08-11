@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHeader } from "@/components/shared/page-header";
 import { Container } from "@/components/shared/container";
-import { SectionTitle } from "@/components/shared/section-title";
 import { JsonLd, buildBreadcrumbSchema } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Giới Thiệu",
   description:
-    "Câu chuyện, triết lý và đội ngũ đứng sau nhà hàng chay cao cấp Lotus & Earth.",
+    "Câu chuyện, triết lý và đội ngũ đứng sau nhà hàng chay cao cấp Hương Sen.",
   alternates: { canonical: "/about" },
 };
 
@@ -22,16 +21,9 @@ const CORE_VALUES = [
 const TIMELINE = [
   { year: "2021", event: "Hương Sen khởi nguồn từ một căn bếp nhỏ tại TP.HCM." },
   { year: "2022", event: "Mở nhà hàng đầu tiên, định hình phong cách fine dining chay." },
-  { year: "2023", event: "Vinh dự nhận giải thưởng Nhà Hàng Chay Xuất Sắc." },
+  { year: "2023", event: "Hoàn thiện thực đơn chay đặc trưng và trải nghiệm phục vụ chỉn chu." },
   { year: "2024", event: "Mở rộng không gian, ra mắt phòng riêng Chef's Table." },
   { year: "2026", event: "Tiếp tục hành trình lan tỏa triết lý ẩm thực bền vững." },
-];
-
-const AWARDS = [
-  "Giải Thưởng Nhà Hàng Chay Xuất Sắc 2023",
-  "Top 10 Fine Dining Restaurant Việt Nam 2024",
-  "Chứng Nhận Green Restaurant 2024",
-  "Đề Cử Michelin Guide Selected 2025",
 ];
 
 function LotusMark({ className = "h-12 w-16" }: { className?: string }) {
@@ -55,7 +47,7 @@ export default function AboutPage() {
       />
       <PageHeader
         eyebrow="Về Chúng Tôi"
-        title="Câu Chuyện Lotus & Earth"
+        title="Câu Chuyện Hương Sen"
         description="Hành trình từ tình yêu ẩm thực thực vật đến một thương hiệu fine dining."
         image="/images/spaces/huong-sen-space-10.png"
       />
@@ -65,6 +57,7 @@ export default function AboutPage() {
           src="/images/about-huong-sen/story-background.png"
           alt=""
           fill
+          loading="eager"
           aria-hidden="true"
           className="pointer-events-none -z-10 object-fill max-md:object-cover"
           sizes="100vw"
@@ -359,8 +352,9 @@ export default function AboutPage() {
             <div className="relative flex flex-col justify-center px-7 py-12 sm:px-12 lg:px-16 lg:py-14 xl:px-20">
               <LotusMark className="h-12 w-16 text-[#bd9551]" />
 
-              <h3 className="mt-5 max-w-[650px] font-heading text-[clamp(2.7rem,4.35vw,4.9rem)] leading-[0.98] tracking-[-0.035em] text-[#123f2d]">
-                Nguyễn Dương Bích Hương
+              <h3 className="mt-5 max-w-[620px] text-balance font-heading text-[clamp(2.55rem,3.75vw,4.35rem)] leading-[1.02] tracking-[-0.03em] text-[#123f2d]">
+                <span className="block">Nguyễn Dương</span>
+                <span className="block">Bích Hương</span>
               </h3>
               <p className="mt-5 text-sm font-semibold uppercase tracking-[0.28em] text-[#bd9551] sm:text-base">
                 Đầu bếp Hương Sen
@@ -406,22 +400,6 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      <section className="section-padding bg-bg-primary">
-        <Container>
-          <SectionTitle eyebrow="Ghi Nhận" title="Giải Thưởng" className="mb-14" />
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-            {AWARDS.map((award) => (
-              <div
-                key={award}
-                className="flex items-center gap-4 rounded-lg border border-border bg-surface-raised p-6"
-              >
-                <span className="font-heading text-2xl text-gold">★</span>
-                <p className="text-sm text-text/70">{award}</p>
-              </div>
-            ))}
-          </div>
-        </Container>
-      </section>
     </>
   );
 }

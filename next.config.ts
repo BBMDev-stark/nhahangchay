@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  agentRules: false,
   images: {
     formats: ["image/avif", "image/webp"],
     // Khi thay ảnh placeholder bằng ảnh thật từ CDN/CMS, thêm domain vào đây:

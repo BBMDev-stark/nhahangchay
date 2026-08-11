@@ -6,10 +6,8 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image: url('/images/huong-sen/hero/huong-sen-architectural-background.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  object-fit: cover;
+  object-position: center;
 }
 
 .eyebrow {
@@ -126,7 +124,7 @@
 
 @media (max-width: 1023px) {
   .architecture {
-    background-position: 42% center;
+    object-position: 42% center;
   }
 
   .title {

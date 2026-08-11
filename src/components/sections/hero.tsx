@@ -133,6 +133,7 @@ export function Hero() {
   const [isSwapping, setIsSwapping] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const swapTimerRef = useRef<number | null>(null);
+  const windowNearRef = useRef(false);
   // Modal chi tiết món ăn — mở khi click vào đĩa lớn ở giữa
   const [isDishModalOpen, setIsDishModalOpen] = useState(false);
 
@@ -169,8 +170,17 @@ export function Hero() {
     const isNearWindow =
       pointerX <= proximityWidth && pointerY >= 90 && pointerY <= bounds.height;
 
-    setIsWindowNear(isNearWindow);
-    if (isNearWindow) setIsWindowCueVisible(false);
+    if (windowNearRef.current !== isNearWindow) {
+      windowNearRef.current = isNearWindow;
+      setIsWindowNear(isNearWindow);
+    }
+    if (isNearWindow && isWindowCueVisible) setIsWindowCueVisible(false);
+  }
+
+  function handleHeroPointerLeave() {
+    if (!windowNearRef.current) return;
+    windowNearRef.current = false;
+    setIsWindowNear(false);
   }
 
   function handleSwap(index: number) {
@@ -203,10 +213,18 @@ export function Hero() {
         data-window-near={isWindowNear ? "true" : "false"}
         data-window-cue={isWindowCueVisible ? "true" : "false"}
         onPointerMove={handleHeroPointerMove}
-        onPointerLeave={() => setIsWindowNear(false)}
+        onPointerLeave={handleHeroPointerLeave}
         className={`${styles.hero} hero-background-stage relative overflow-hidden pt-[96px]`}
       >
-        <div className={styles.architecture} aria-hidden="true" />
+        <Image
+          src="/images/huong-sen/hero/huong-sen-architectural-background.png"
+          alt=""
+          fill
+          loading="eager"
+          sizes="100vw"
+          className={styles.architecture}
+          aria-hidden="true"
+        />
 
         <div
           className="hero-window-hotspot"

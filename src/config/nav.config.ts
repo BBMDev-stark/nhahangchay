@@ -18,7 +18,7 @@ export const footerNav = {
     { label: "Không Gian", href: "/gallery" },
   ],
   guest: [
-    { label: "Đặt Bàn", href: "/reservation" },
+    { label: "Đặt Bàn", href: "/#reservation" },
     { label: "Câu Hỏi Thường Gặp", href: "/#faq" },
   ],
 };

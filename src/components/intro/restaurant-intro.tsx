@@ -40,6 +40,8 @@ function HeroInterface({ hovered }: { hovered: boolean }) {
     <>
       <motion.header
         className="lotus-hero-header"
+        aria-hidden={!visible}
+        inert={!visible}
         animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : -8 }}
         transition={{ duration: reducedMotion ? 0.1 : 0.7, ease: EASE }}
       >
@@ -54,6 +56,8 @@ function HeroInterface({ hovered }: { hovered: boolean }) {
 
       <motion.div
         className="lotus-hero-title"
+        aria-hidden={!visible}
+        inert={!visible}
         animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 12 }}
         transition={{
           duration: reducedMotion ? 0.1 : 0.8,
@@ -68,6 +72,7 @@ function HeroInterface({ hovered }: { hovered: boolean }) {
 
       <motion.aside
         className="lotus-hero-note lotus-hero-note--left"
+        aria-hidden={!visible || breakpoint === "mobile"}
         animate={{ opacity: visible && breakpoint !== "mobile" ? 1 : 0 }}
       >
         <span>MÓN 01</span>
@@ -77,6 +82,7 @@ function HeroInterface({ hovered }: { hovered: boolean }) {
 
       <motion.aside
         className="lotus-hero-note lotus-hero-note--right"
+        aria-hidden={!visible || breakpoint === "mobile"}
         animate={{ opacity: visible && breakpoint !== "mobile" ? 1 : 0 }}
       >
         <span>TỪ TÂM 01</span>
@@ -86,6 +92,7 @@ function HeroInterface({ hovered }: { hovered: boolean }) {
 
       <motion.div
         className="lotus-hero-instruction"
+        aria-hidden={!visible}
         data-hovered={hovered}
         animate={{ opacity: visible ? 1 : 0, y: visible ? 0 : 8 }}
         transition={{ duration: reducedMotion ? 0.1 : 0.6, delay: visible ? 0.35 : 0 }}

@@ -10,6 +10,7 @@ import {
   forwardRef,
   type ForwardedRef,
 } from "react";
+import Link from "next/link";
 import { DishNavigation } from "./DishNavigation";
 import { IngredientList } from "./IngredientList";
 import type { DishExperiencePhase, SignatureDish } from "./types";
@@ -148,14 +149,14 @@ function DishDetailOverlayComponent(
 
         <div className={styles.detailCta} data-dish-detail-reveal data-dish-copy>
           <strong>{dish.price.toLocaleString("vi-VN")} đ</strong>
-          <a
-            href="#reservation"
+          <Link
+            href="/#reservation"
             tabIndex={interactive ? 0 : -1}
             aria-label={`Đặt món ${dish.name}`}
           >
             Đặt món ngay
             <ArrowUpRight aria-hidden="true" size={17} strokeWidth={1.25} />
-          </a>
+          </Link>
         </div>
       </article>
 
@@ -178,4 +179,3 @@ function FlowerDivider() {
 }
 
 export const DishDetailOverlay = forwardRef(DishDetailOverlayComponent);
-

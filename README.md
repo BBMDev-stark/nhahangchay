@@ -1,8 +1,8 @@
-# Lotus & Earth — Luxury Vegetarian Restaurant Website
+# Hương Sen — Luxury Vegetarian Restaurant Website
 
 Website nhà hàng chay cao cấp, xây dựng bằng Next.js 16 (App Router) + React 19 + TypeScript + Tailwind CSS 4.
 
-> **Lưu ý:** "LOTUS & EARTH" là tên thương hiệu **giả định tạm thời**. Toàn bộ thông tin
+> Thương hiệu sử dụng trong dự án: **Hương Sen**. Toàn bộ thông tin
 > thương hiệu (tên, địa chỉ, SĐT, mạng xã hội...) nằm tập trung tại
 > `src/config/site.config.ts` — chỉ cần sửa 1 file này khi có thông tin thật.
 

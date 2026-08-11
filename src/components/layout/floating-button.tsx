@@ -13,7 +13,7 @@ export function FloatingButton() {
       className="fixed bottom-6 right-6 z-50"
     >
       <Link
-        href="/reservation"
+        href="/#reservation"
         className="text-button flex items-center gap-2 rounded-full border border-green-primary/40 bg-green-primary px-5 py-3.5 text-white shadow-lg shadow-green-primary/20 transition hover:-translate-y-0.5 hover:bg-[#1f5133]"
       >
         <CalendarCheck size={16} />

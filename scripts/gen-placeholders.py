@@ -40,7 +40,7 @@ def make_image(path, label, size=(1200, 1500), idx=0):
     tw, th = bbox[2] - bbox[0], bbox[3] - bbox[1]
     draw.text(((size[0] - tw) / 2, (size[1] - th) / 2 - 10), text, fill=fg, font=font)
 
-    sub = "LOTUS & EARTH"
+    sub = "HƯƠNG SEN"
     bbox2 = draw.textbbox((0, 0), sub, font=font_small)
     tw2, th2 = bbox2[2] - bbox2[0], bbox2[3] - bbox2[1]
     draw.text(((size[0] - tw2) / 2, (size[1] - th2) / 2 + th + 20), sub, fill=fg, font=font_small)
