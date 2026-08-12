@@ -1,10 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import type { MouseEvent } from "react";
 import { motion } from "framer-motion";
 import { CalendarCheck } from "lucide-react";
 
 export function FloatingButton() {
+  function handleReservationClick(event: MouseEvent<HTMLAnchorElement>) {
+    if (window.location.pathname !== "/") return;
+
+    const reservationSection = document.getElementById("reservation");
+    if (!reservationSection) return;
+
+    event.preventDefault();
+    window.history.replaceState(null, "", "#reservation");
+    reservationSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
   return (
     <motion.div
       initial={{ opacity: 0, x: 40 }}
@@ -14,6 +26,7 @@ export function FloatingButton() {
     >
       <Link
         href="/#reservation"
+        onClick={handleReservationClick}
         className="text-button flex items-center gap-2 rounded-full border border-green-primary/40 bg-green-primary px-5 py-3.5 text-white shadow-lg shadow-green-primary/20 transition hover:-translate-y-0.5 hover:bg-[#1f5133]"
       >
         <CalendarCheck size={16} />

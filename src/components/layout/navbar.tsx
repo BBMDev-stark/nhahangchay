@@ -3,9 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Search, ShoppingBag, ArrowRight } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { mainNav } from "@/config/nav.config";
 import { siteConfig } from "@/config/site.config";
 import { Container } from "@/components/shared/container";
@@ -33,6 +33,18 @@ export function Navbar() {
     // eslint-disable-next-line react-hooks/set-state-in-effect -- reset menu state when route changes
     setMobileOpen(false);
   }, [pathname]);
+
+  function handleReservationClick(event: MouseEvent<HTMLAnchorElement>) {
+    setMobileOpen(false);
+    if (pathname !== "/") return;
+
+    const reservationSection = document.getElementById("reservation");
+    if (!reservationSection) return;
+
+    event.preventDefault();
+    window.history.replaceState(null, "", "#reservation");
+    reservationSection.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 
   return (
     <header
@@ -77,26 +89,12 @@ export function Navbar() {
             ))}
           </ul>
 
-          {/* Right icons + CTA */}
+          {/* Reservation CTA */}
           <div className="hidden items-center justify-end gap-3 xl:flex">
-            <button
-              aria-label="Tìm kiếm"
-                className="flex size-11 items-center justify-center rounded-full border border-green-primary/15 bg-white/35 text-text/70 transition-all hover:border-gold hover:bg-white/70 hover:text-gold"
-            >
-              <Search size={17} strokeWidth={1.5} />
-            </button>
-            <button
-              aria-label="Giỏ hàng"
-                className="relative flex size-11 items-center justify-center rounded-full border border-green-primary/15 bg-white/35 text-text/70 transition-all hover:border-gold hover:bg-white/70 hover:text-gold"
-            >
-              <ShoppingBag size={17} strokeWidth={1.5} />
-              <span className="absolute -top-1 -right-1 flex size-4 items-center justify-center rounded-full bg-burgundy text-[10px] font-semibold text-white">
-                2
-              </span>
-            </button>
             <Link
               href="/#reservation"
-              className="ml-1 flex h-[46px] items-center gap-3 whitespace-nowrap rounded-full border border-green-primary/40 bg-green-primary px-7 text-xs font-semibold tracking-[0.11em] text-white uppercase backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#214f35] hover:shadow-[0_14px_32px_rgba(50,117,74,0.18)]"
+              onClick={handleReservationClick}
+              className="flex h-[46px] items-center gap-3 whitespace-nowrap rounded-full border border-green-primary/40 bg-green-primary px-7 text-xs font-semibold tracking-[0.11em] text-white uppercase backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#214f35] hover:shadow-[0_14px_32px_rgba(50,117,74,0.18)]"
             >
               Đặt Bàn Ngay
               <ArrowRight size={14} />
@@ -134,6 +132,7 @@ export function Navbar() {
               ))}
               <Link
                 href="/#reservation"
+                onClick={handleReservationClick}
                 className="mt-2 flex items-center justify-center gap-2 rounded-full border border-green-primary/40 bg-green-primary px-6 py-4 text-xs font-semibold tracking-wider text-white uppercase"
               >
                 Đặt Bàn Ngay

@@ -128,13 +128,13 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-[760px] lg:mx-0">
+          <div className="relative mx-auto aspect-[1476/1066] w-full max-w-[760px] overflow-hidden rounded-[22px] shadow-[0_22px_42px_rgba(31,54,40,0.14)] lg:mx-0">
             <Image
               src="/images/about-huong-sen/vision-card.png"
               alt="Tầm nhìn Hương Sen"
               width={1476}
               height={1066}
-              className="h-auto w-full drop-shadow-[0_22px_28px_rgba(31,54,40,0.14)]"
+              className="h-full w-full scale-[1.018] object-cover"
               sizes="(max-width: 1023px) calc(100vw - 40px), 54vw"
             />
           </div>
