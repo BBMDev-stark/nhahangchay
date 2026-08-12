@@ -16,14 +16,29 @@ export function ReservationSection() {
     <section id="reservation" className="section-padding scroll-mt-24 bg-bg-primary">
       <Container className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2">
         <div className="overflow-hidden rounded-lg border border-border bg-white shadow-sm">
-          <iframe
-            src={siteConfig.contact.mapEmbedUrl}
-            title="Google Maps - Nhà hàng chay Hương Sen"
-            className="h-[420px] w-full border-0 lg:h-[560px]"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            allowFullScreen
-          />
+          <div className="relative">
+            <iframe
+              src={siteConfig.contact.mapEmbedUrl}
+              title="Google Maps - Nhà hàng chay Hương Sen"
+              className="pointer-events-none h-[420px] w-full border-0 lg:pointer-events-auto lg:h-[560px]"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+            <a
+              href={siteConfig.contact.directionsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Mở vị trí nhà hàng trong Google Maps"
+              className="absolute inset-0 z-10 flex touch-pan-y items-end justify-center p-4 lg:hidden"
+            >
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/70 bg-white/92 px-4 py-2 text-xs font-semibold text-green-primary shadow-lg backdrop-blur-sm">
+                <MapPin size={15} aria-hidden="true" />
+                Chạm để mở Google Maps
+                <ExternalLink size={14} aria-hidden="true" />
+              </span>
+            </a>
+          </div>
           <div className="flex flex-col gap-4 border-t border-border px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex min-w-0 items-start gap-3">
               <MapPin className="mt-0.5 shrink-0 text-gold" size={20} aria-hidden="true" />

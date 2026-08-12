@@ -177,7 +177,7 @@ export function DishDetailModal({ dishId, isOpen, onClose }: DishDetailModalProp
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className="pointer-events-none relative z-10 flex h-full w-full max-w-[1600px] flex-col items-center overflow-y-auto px-6 py-24 sm:px-10 lg:overflow-visible lg:px-16 lg:py-20"
+            className="pointer-events-auto relative z-10 flex h-full w-full max-w-[1600px] touch-pan-y flex-col items-center overflow-y-auto overscroll-contain px-6 py-24 sm:px-10 lg:pointer-events-none lg:overflow-visible lg:px-16 lg:py-20"
           >
             <div className="pointer-events-auto grid w-full flex-1 grid-cols-1 items-center gap-14 lg:grid-cols-[30%_38%_30%] lg:gap-10">
               {/* LEFT — thông tin món ăn */}

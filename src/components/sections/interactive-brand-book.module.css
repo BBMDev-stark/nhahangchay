@@ -685,6 +685,12 @@
 }
 
 @media (max-width: 767px) {
+  .experience,
+  .stage,
+  .bookSizer {
+    touch-action: pan-y;
+  }
+
   .stage {
     min-height: clamp(450px, 122vw, 500px);
   }

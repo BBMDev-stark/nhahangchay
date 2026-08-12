@@ -25,6 +25,15 @@ export function LenisProvider({ children, enabled = true }: LenisProviderProps) 
   useEffect(() => {
     if (!enabled) return;
 
+    // Native scrolling is more reliable on touch devices. In particular, it
+    // avoids a smooth-wheel controller competing with full-screen carousels,
+    // modals and the interactive menu book on narrow mobile viewports.
+    // Desktop keeps the existing Lenis experience unchanged.
+    const prefersNativeScroll = window.matchMedia(
+      "(max-width: 767px), (hover: none) and (pointer: coarse)",
+    ).matches;
+    if (prefersNativeScroll) return;
+
     const lenis = new Lenis({
       duration: 1.1,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

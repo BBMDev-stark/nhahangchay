@@ -715,8 +715,14 @@ export function useDishExperience({
       const totalX = event.clientX - session.startX;
       const totalY = event.clientY - session.startY;
       if (!session.horizontal) {
-        if (Math.abs(totalX) < 6 && Math.abs(totalY) < 6) return;
-        if (Math.abs(totalY) > Math.abs(totalX) * 1.2) {
+        const distanceX = Math.abs(totalX);
+        const distanceY = Math.abs(totalY);
+        if (distanceX < 10 && distanceY < 10) return;
+
+        // A vertical or diagonal swipe belongs to the page. Only capture the
+        // pointer after the user's horizontal intent is unambiguous, otherwise
+        // this full-screen section can make mobile scrolling feel stuck.
+        if (distanceY >= distanceX || distanceX < distanceY * 1.35) {
           pointerSessionRef.current = null;
           return;
         }
