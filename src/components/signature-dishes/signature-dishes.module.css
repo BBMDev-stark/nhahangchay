@@ -1188,11 +1188,11 @@
   }
 
   .stage {
-    inset: 11% -34% 17%;
+    inset: 5% -34% 15%;
   }
 
   .photoDish {
-    width: min(82vw, 23rem);
+    width: min(88vw, 24rem);
   }
 
   .section[data-phase="opening"] .stage,
@@ -1809,8 +1809,8 @@
     background-size: auto 100%;
     filter: none;
   }
-  .stage { inset: 20% 0 13%; }
-  .photoDish { width: min(82vw, 27rem); }
+  .stage { inset: 10% 0 13%; }
+  .photoDish { width: min(88vw, 27rem); }
   .photoPedestal, .photoDish[data-active="true"] .photoPedestal { bottom: -2%; }
   .photoDish[data-active="true"] .photoPedestal { bottom: -7%; }
   .exploreHeader { top: 1.4rem; }
@@ -1955,4 +1955,163 @@
   .namePrice { width: min(50rem, calc(100vw - 6rem)); }
   .detailCopy { width: clamp(18rem, 36vw, 24rem); }
   .titleMask h3 { font-size: clamp(2.65rem, 5vw, 4rem); }
+}
+
+/* Final mobile composition: keep the dish, copy and controls as one compact unit. */
+@media (max-width: 767px) {
+  .section {
+    min-height: max(42rem, 100svh);
+  }
+
+  .stage {
+    inset: 7.25rem -28% 16.5rem;
+  }
+
+  .photoDish {
+    width: min(91vw, 25rem);
+  }
+
+  .section[data-phase="explore"] .photoDish[data-active="false"],
+  .section[data-phase="dragging"] .photoDish[data-active="false"],
+  .section[data-phase="snapping"] .photoDish[data-active="false"] {
+    opacity: 0 !important;
+  }
+
+  .activeDishInfo {
+    bottom: 5.7rem;
+    width: calc(100vw - 2rem);
+  }
+
+  .namePrice {
+    width: min(21rem, calc(100vw - 3rem));
+    gap: 0.08rem;
+  }
+
+  .namePrice h3,
+  .namePrice span {
+    font-size: clamp(1.55rem, 7vw, 1.95rem);
+    line-height: 1.02;
+  }
+
+  .badges {
+    gap: 0.38rem;
+    margin-top: 0.55rem;
+  }
+
+  .badges > span {
+    padding: 0.3rem 0.65rem;
+    font-size: 0.54rem;
+  }
+
+  .exploreDishButton {
+    margin-top: 0.25rem;
+    font-size: 0.56rem;
+  }
+
+  .progress {
+    width: min(13.75rem, 60vw);
+    margin-top: 0.15rem;
+  }
+
+  .mobileNavigation {
+    right: auto;
+    bottom: 1rem;
+    left: 50%;
+    z-index: 12;
+    transform: translateX(-50%);
+  }
+
+  .mobileNavigation .navigation {
+    gap: 0.35rem;
+    padding: 0.3rem;
+    border: 1px solid rgba(190, 154, 80, 0.28);
+    border-radius: 999px;
+    background: rgba(252, 249, 242, 0.92);
+    box-shadow:
+      0 0.65rem 1.6rem rgba(47, 62, 50, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(10px);
+  }
+
+  .mobileNavigation .navRule {
+    display: none;
+  }
+
+  .mobileNavigation .navButton {
+    width: 2.55rem;
+    min-width: 2.55rem;
+    height: 2.55rem;
+    min-height: 2.55rem;
+    border: 0;
+    background: transparent;
+    color: var(--hs-green);
+    box-shadow: none;
+  }
+
+  .mobileNavigation .navButton::after {
+    display: none;
+  }
+
+  .mobileNavigation .navButton:last-child {
+    background: var(--hs-green);
+    color: #fff8e8;
+    box-shadow: 0 0.35rem 0.85rem rgba(23, 63, 43, 0.2);
+  }
+
+  .mobileNavigation .navButton:hover,
+  .mobileNavigation .navButton:focus-visible {
+    background: rgba(23, 63, 43, 0.09);
+    color: var(--hs-green);
+  }
+
+  .mobileNavigation .navButton:last-child:hover,
+  .mobileNavigation .navButton:last-child:focus-visible {
+    background: #234f39;
+    color: #fff8e8;
+  }
+
+  .section[data-phase="opening"] .stage,
+  .section[data-phase="detail"] .stage,
+  .section[data-phase="switching-detail"] .stage,
+  .section[data-phase="closing"] .stage {
+    inset: 12rem -15% 28%;
+  }
+
+  .section[data-phase="opening"] .photoDish,
+  .section[data-phase="detail"] .photoDish,
+  .section[data-phase="switching-detail"] .photoDish,
+  .section[data-phase="closing"] .photoDish {
+    width: min(82vw, 23rem);
+  }
+
+  .section[data-phase="opening"] .detailCopy,
+  .section[data-phase="detail"] .detailCopy,
+  .section[data-phase="switching-detail"] .detailCopy,
+  .section[data-phase="closing"] .detailCopy {
+    top: 46%;
+    right: 1.1rem;
+    left: 1.1rem;
+    width: auto;
+  }
+
+  .section[data-phase="opening"] .detailTopbar,
+  .section[data-phase="detail"] .detailTopbar,
+  .section[data-phase="switching-detail"] .detailTopbar,
+  .section[data-phase="closing"] .detailTopbar {
+    top: 6.25rem;
+    z-index: 20;
+  }
+
+  .section[data-phase="detail"] .titleMask h3,
+  .section[data-phase="switching-detail"] .titleMask h3 {
+    font-size: clamp(2.15rem, 9.5vw, 2.75rem);
+    line-height: 0.98;
+  }
+
+  .section[data-phase="opening"] .ingredientsPanel,
+  .section[data-phase="detail"] .ingredientsPanel,
+  .section[data-phase="switching-detail"] .ingredientsPanel,
+  .section[data-phase="closing"] .ingredientsPanel {
+    display: none;
+  }
 }

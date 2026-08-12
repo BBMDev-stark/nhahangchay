@@ -2,7 +2,7 @@
 
 import { gsap } from "gsap";
 import Image from "next/image";
-import { BookOpen, RotateCcw } from "lucide-react";
+import { BookOpen, ChevronLeft, ChevronRight, RotateCcw } from "lucide-react";
 import {
   useCallback,
   useEffect,
@@ -25,6 +25,7 @@ type PageFlipInstance = {
   flipNext: (corner?: "top" | "bottom") => void;
   flipPrev: (corner?: "top" | "bottom") => void;
   flip: (page: number, corner?: "top" | "bottom") => void;
+  turnToPage: (page: number) => void;
   getCurrentPageIndex: () => number;
   getOrientation: () => BookOrientation;
   getState: () => string;
@@ -69,7 +70,7 @@ function MenuRows({ items }: { items: MenuPageData["items"] }) {
 
 function MenuPage({ page, index }: { page: MenuPageData; index: number }) {
   return (
-    <article className={`${styles.menuPage} ${page.dense ? styles.menuPageDense : ""}`}>
+    <article className={`${styles.menuPage} ${page.dense || page.secondItems ? styles.menuPageDense : ""}`}>
       <header className={styles.menuHero}>
         <div className={styles.menuPhotoArch}>
           <Image
@@ -142,6 +143,7 @@ export function InteractiveBrandBook({
   const mountRef = useRef<HTMLDivElement>(null);
   const glowRef = useRef<HTMLSpanElement>(null);
   const pageFlipRef = useRef<PageFlipInstance | null>(null);
+  const busyReleaseRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [isReady, setIsReady] = useState(false);
   const [isBusy, setIsBusy] = useState(false);
@@ -154,6 +156,25 @@ export function InteractiveBrandBook({
   const activeMenuPage = Math.max(0, Math.min(menuPages.length - 1, currentPage - 1));
   const isFront = currentPage === 0;
   const isBack = currentPage === lastPage;
+
+  const releaseBusy = useCallback(() => {
+    if (busyReleaseRef.current) {
+      clearTimeout(busyReleaseRef.current);
+      busyReleaseRef.current = null;
+    }
+    setIsBusy(false);
+  }, []);
+
+  const beginFlip = useCallback(() => {
+    if (busyReleaseRef.current) clearTimeout(busyReleaseRef.current);
+    setIsBusy(true);
+    // page-flip can occasionally omit its final `read` event after a touch.
+    // Never leave the navigation locked when that happens.
+    busyReleaseRef.current = setTimeout(() => {
+      busyReleaseRef.current = null;
+      setIsBusy(false);
+    }, 1400);
+  }, []);
 
   useEffect(() => {
     onReadingChange?.(bookState === "reading");
@@ -178,6 +199,7 @@ export function InteractiveBrandBook({
       const pageElements = Array.from(
         mountRef.current.querySelectorAll<HTMLElement>("[data-book-page]"),
       );
+      const isMobileBook = window.matchMedia("(max-width: 767px)").matches;
 
       instance = new pageFlipModule.PageFlip(mountRef.current, {
         width: 425,
@@ -196,8 +218,10 @@ export function InteractiveBrandBook({
         mobileScrollSupport: true,
         swipeDistance: 24,
         clickEventForward: true,
+        // On mobile, page changes are intentionally controlled by the two
+        // visible arrow buttons so an accidental swipe cannot turn a page.
         useMouseEvents: true,
-        showPageCorners: true,
+        showPageCorners: !isMobileBook,
         disableFlipByClick: true,
       });
 
@@ -218,7 +242,7 @@ export function InteractiveBrandBook({
         const safePage = Number.isFinite(page) ? page : 0;
         setCurrentPage(safePage);
         setBookState(stateFromPage(safePage, lastPage));
-        setIsBusy(false);
+        releaseBusy();
 
         if (glowRef.current) {
           gsap.fromTo(
@@ -236,7 +260,11 @@ export function InteractiveBrandBook({
 
       instance.on("changeState", (event) => {
         const state = String(event.data);
-        setIsBusy(state !== "read");
+        if (state === "read") {
+          releaseBusy();
+        } else {
+          setIsBusy(true);
+        }
 
         if (state === "flipping" && rootRef.current) {
           gsap.fromTo(
@@ -281,30 +309,44 @@ export function InteractiveBrandBook({
         }
       }
       pageFlipRef.current = null;
+      if (busyReleaseRef.current) {
+        clearTimeout(busyReleaseRef.current);
+        busyReleaseRef.current = null;
+      }
     };
-  }, [lastPage]);
+  }, [lastPage, releaseBusy]);
 
   const flipNext = useCallback(() => {
-    if (!isReady || isBusy || isBack) return;
+    if (!isReady || isBack) return;
+    const instance = pageFlipRef.current;
+    if (!instance) return;
+    if (isBusy) return;
     if (isFront) {
       setBookState("reading");
     } else if (currentPage >= lastPage - 2) {
       setBookState("back");
     }
-    setIsBusy(true);
-    pageFlipRef.current?.flipNext("bottom");
-  }, [currentPage, isBack, isBusy, isFront, isReady, lastPage]);
+    beginFlip();
+    instance.flipNext("bottom");
+  }, [beginFlip, currentPage, isBack, isBusy, isFront, isReady, lastPage]);
 
   const flipPrev = useCallback(() => {
-    if (!isReady || isBusy || isFront) return;
+    if (!isReady || isFront) return;
+    const instance = pageFlipRef.current;
+    if (!instance) return;
+    if (isBusy) return;
+    if (orientation === "portrait") {
+      instance.turnToPage(Math.max(0, currentPage - 1));
+      return;
+    }
     if (isBack) {
       setBookState("reading");
     } else if (currentPage <= 1) {
       setBookState("front");
     }
-    setIsBusy(true);
-    pageFlipRef.current?.flipPrev("bottom");
-  }, [currentPage, isBack, isBusy, isFront, isReady]);
+    beginFlip();
+    instance.flipPrev("bottom");
+  }, [beginFlip, currentPage, isBack, isBusy, isFront, isReady, orientation]);
 
   const updateIllumination = useCallback(
     (event: ReactPointerEvent<HTMLDivElement>) => {
@@ -342,6 +384,9 @@ export function InteractiveBrandBook({
       data-book-state={bookState}
       data-book-orientation={orientation}
       data-book-lit={isIlluminated ? "true" : "false"}
+      data-book-page={currentPage}
+      data-book-ready={isReady ? "true" : "false"}
+      data-book-busy={isBusy ? "true" : "false"}
     >
       <div className={styles.stage}>
         <span ref={glowRef} className={styles.stageGlow} />
@@ -405,6 +450,28 @@ export function InteractiveBrandBook({
           />
           </div>
         </div>
+
+        <nav className={styles.mobilePageNavigation} aria-label="Chuyển trang thực đơn">
+          <button
+            type="button"
+            onClick={flipPrev}
+            disabled={!isReady || isBusy || isFront}
+            aria-label="Xem trang thực đơn trước"
+          >
+            <ChevronLeft aria-hidden="true" />
+          </button>
+          <span aria-live="polite">
+            {isFront ? "Bìa" : isBack ? "Cuối" : `${activeMenuPage + 1} / ${menuPages.length}`}
+          </span>
+          <button
+            type="button"
+            onClick={flipNext}
+            disabled={!isReady || isBusy || isBack}
+            aria-label="Xem trang thực đơn tiếp theo"
+          >
+            <ChevronRight aria-hidden="true" />
+          </button>
+        </nav>
 
       </div>
 

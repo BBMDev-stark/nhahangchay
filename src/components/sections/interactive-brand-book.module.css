@@ -674,6 +674,10 @@
   height: 14px;
 }
 
+.mobilePageNavigation {
+  display: none;
+}
+
 @media (max-width: 1023px) {
   .stage {
     min-height: clamp(580px, 72vw, 680px);
@@ -682,7 +686,7 @@
 
 @media (max-width: 767px) {
   .stage {
-    min-height: clamp(570px, 86vw, 650px);
+    min-height: clamp(450px, 122vw, 500px);
   }
 
   .bookSizer {
@@ -761,7 +765,62 @@
 
   .instruction {
     max-width: 90vw;
+    margin-top: 4px;
     line-height: 1.5;
+    transform: none;
+  }
+
+  .experience[data-book-state="reading"] .instruction {
+    display: none !important;
+  }
+
+  .experience[data-book-state="reading"] .stage {
+    min-height: clamp(320px, 88vw, 350px);
+  }
+
+  .mobilePageNavigation {
+    position: absolute;
+    z-index: 30;
+    right: 8px;
+    top: 50%;
+    bottom: auto;
+    left: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    pointer-events: none;
+    transform: translateY(-50%);
+  }
+
+  .mobilePageNavigation button {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    border: 1px solid rgb(190 154 80 / 62%);
+    border-radius: 50%;
+    background: rgb(251 248 241 / 94%);
+    color: #173f2b;
+    box-shadow: 0 9px 22px rgb(31 54 40 / 15%);
+    pointer-events: auto;
+    transition: opacity 180ms ease, transform 180ms ease;
+  }
+
+  .mobilePageNavigation button:active:not(:disabled) {
+    transform: scale(0.94);
+  }
+
+  .mobilePageNavigation button:disabled {
+    opacity: 0.28;
+  }
+
+  .mobilePageNavigation svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .mobilePageNavigation span {
+    display: none;
   }
 }
 
@@ -933,7 +992,7 @@
 
 @media (max-width: 430px) {
   .stage {
-    min-height: 570px;
+    min-height: 480px;
   }
 
   .pageOrnament {
@@ -1166,4 +1225,99 @@
 
 .bookMount :global(.stf__block) {
   filter: drop-shadow(0 7px 9px rgb(16 28 20 / 14%));
+}
+
+/* Mobile menu legibility: reserve space for prices and keep the footer clear. */
+@media (max-width: 767px) {
+  .bookMount {
+    pointer-events: none;
+  }
+
+  .menuBody,
+  .menuPageDense .menuBody {
+    height: 365px;
+    padding: 18px 29px 48px;
+  }
+
+  .menuRow {
+    min-height: 38px;
+    padding: 0 0 6px;
+    column-gap: 5px;
+  }
+
+  .menuPageDense .menuRow {
+    min-height: 20px;
+    padding-bottom: 2px;
+  }
+
+  .itemName,
+  .menuPageDense .itemName {
+    min-width: 0;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .itemPrice,
+  .menuPageDense .itemPrice {
+    align-self: start;
+    padding-left: 3px;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .menuRow small {
+    margin-top: 3px;
+    font-size: 6px;
+    line-height: 1.2;
+    -webkit-line-clamp: 1;
+  }
+
+  .secondMenuSection,
+  .menuPageDense .secondMenuSection {
+    margin-top: 6px;
+  }
+
+  .menuFooter {
+    right: 29px;
+    bottom: 12px;
+    left: 29px;
+    min-height: 15px;
+    align-items: end;
+    background: rgb(247 243 235 / 88%);
+  }
+}
+
+@media (max-width: 430px) {
+  .menuHeroCopy h3 {
+    font-size: 34px;
+  }
+
+  .menuBody,
+  .menuPageDense .menuBody {
+    padding-inline: 27px;
+  }
+
+  .menuBody > .menuRows,
+  .secondMenuSection .menuRows {
+    column-gap: 18px;
+  }
+
+  .itemName,
+  .itemName {
+    font-size: 10.5px;
+  }
+
+  .itemPrice,
+  .itemPrice {
+    font-size: 8px;
+  }
+
+  .menuPageDense .itemName {
+    font-size: 8.5px;
+    line-height: 1.05;
+  }
+
+  .menuPageDense .itemPrice {
+    font-size: 7px;
+  }
 }

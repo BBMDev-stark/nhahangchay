@@ -397,11 +397,25 @@
   }
 
   .layout {
-    padding: 48px 22px 64px;
+    gap: 18px;
+    padding: 28px 22px 48px;
   }
 
   .bookColumn {
-    min-height: clamp(590px, 143vw, 670px);
+    min-height: clamp(490px, 132vw, 530px);
+  }
+
+  .section[data-book-open="true"] .layout {
+    gap: 0;
+    padding-bottom: 24px;
+  }
+
+  .section[data-book-open="true"] .bookColumn {
+    min-height: 350px;
+  }
+
+  .section[data-book-open="true"] .copy {
+    display: none;
   }
 
   .copy {
@@ -442,7 +456,7 @@
   }
 
   .bookColumn {
-    min-height: 570px;
+    min-height: 500px;
   }
 
   .heading {
