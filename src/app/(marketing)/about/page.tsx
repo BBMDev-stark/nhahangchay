@@ -19,11 +19,42 @@ const CORE_VALUES = [
 ];
 
 const TIMELINE = [
-  { year: "2021", event: "Hương Sen khởi nguồn từ một căn bếp nhỏ tại TP.HCM." },
-  { year: "2022", event: "Mở nhà hàng đầu tiên, định hình phong cách fine dining chay." },
-  { year: "2023", event: "Hoàn thiện thực đơn chay đặc trưng và trải nghiệm phục vụ chỉn chu." },
-  { year: "2024", event: "Mở rộng không gian, ra mắt phòng riêng Chef's Table." },
-  { year: "2026", event: "Tiếp tục hành trình lan tỏa triết lý ẩm thực bền vững." },
+  {
+    year: "2005",
+    title: "Khởi Nguồn Từ Một Quán Nhỏ",
+    event:
+      "Hương Sen ra đời từ một quán chay nhỏ trên đường Hồ Văn Huê, mang theo mong muốn phục vụ những món chay tươi lành và lan tỏa giá trị thiện lành đến cộng đồng.",
+  },
+  {
+    year: "Những Năm Đầu",
+    title: "Người Giữ Lửa Hương Sen",
+    event:
+      "Từ niềm yêu thích ẩm thực chay, Nguyễn Dương Bích Hương tự học, kiên trì thử nghiệm và đảm nhận vai trò bếp trưởng, từng bước xây dựng thực đơn hơn 200 món chay cho nhà hàng.",
+  },
+  {
+    year: "2010",
+    title: "Tiên Phong Buffet Ngày Chay",
+    event:
+      "Hương Sen phát triển thành mô hình nhà hàng phục vụ món gọi và buffet vào ngày chay mùng 1, ngày 15 âm lịch, trở thành một trong những địa chỉ tiên phong được thực khách yêu mến.",
+  },
+  {
+    year: "2011–2024",
+    title: "Bền Bỉ Đồng Hành Cùng Thực Khách",
+    event:
+      "Hương Sen không ngừng học hỏi, sáng tạo món chay tươi ngon, thanh đạm và đủ đầy dinh dưỡng; lấy sự an tâm, hài lòng của thực khách làm động lực phát triển.",
+  },
+  {
+    year: "Cuối 2025",
+    title: "Ngôi Nhà Mới Tại Nguyễn Kiệm",
+    event:
+      "Nhà hàng chuyển về 778/2 Nguyễn Kiệm, Phường Đức Nhuận, TP. Hồ Chí Minh, mở ra không gian mới để tiếp tục gìn giữ và lan tỏa tinh hoa ẩm thực chay Việt.",
+  },
+  {
+    year: "Hôm Nay",
+    title: "Tiếp Nối Hơn Hai Thập Kỷ",
+    event:
+      "Hương Sen tiếp tục đồng hành cùng lối sống xanh, sạch và an lành, chăm chút từng món ăn bằng sự chân thành và lòng trân trọng dành cho cộng đồng.",
+  },
 ];
 
 function LotusMark({ className = "h-12 w-16" }: { className?: string }) {
@@ -284,9 +315,12 @@ export default function AboutPage() {
               <LotusMark className="h-5 w-7 drop-shadow-[0_0_8px_rgba(211,165,79,0.7)]" />
               <span className="h-px flex-1 bg-gradient-to-l from-transparent to-current" />
             </div>
+            <p className="mt-4 max-w-[610px] text-sm leading-6 text-[#f5f0e7]/72 sm:text-[15px]">
+              Từ một quán chay nhỏ năm 2005 đến ngôi nhà mới hôm nay — mỗi chặng đường đều được vun bồi bằng tình yêu món chay và sự đồng hành của thực khách.
+            </p>
           </header>
 
-          <div className="relative mx-auto mt-5 max-w-[720px] pl-[58px] sm:mt-6 sm:pl-[76px]">
+          <div className="relative mx-auto mt-7 max-w-[780px] pl-[58px] sm:mt-8 sm:pl-[76px]">
             <span
               aria-hidden="true"
               className="absolute bottom-5 left-[27px] top-5 w-px bg-gradient-to-b from-[#d9ae58]/20 via-[#e1b65c] to-[#d9ae58]/20 shadow-[0_0_8px_rgba(220,172,77,0.55)] sm:left-[37px]"
@@ -298,9 +332,14 @@ export default function AboutPage() {
                   {i + 1}
                 </div>
 
-                <div className="relative min-h-[94px] rounded-[14px] border border-[#9f7935]/45 bg-[#0a382b]/55 px-5 py-4 shadow-[inset_0_1px_0_rgba(238,205,133,0.05),0_12px_32px_rgba(0,14,10,0.12)] backdrop-blur-[2px] sm:px-7">
-                  <p className="font-heading text-[1.75rem] leading-none text-[#d2a24a]">{t.year}</p>
-                  <p className="mt-2 pr-10 text-sm leading-6 text-[#f5f0e7]/88 sm:text-[15px]">{t.event}</p>
+                <div className="relative min-h-[118px] rounded-[14px] border border-[#9f7935]/45 bg-[#0a382b]/55 px-5 py-5 shadow-[inset_0_1px_0_rgba(238,205,133,0.05),0_12px_32px_rgba(0,14,10,0.12)] backdrop-blur-[2px] sm:px-7">
+                  <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1 pr-10">
+                    <p className="font-heading text-[1.75rem] leading-none text-[#d2a24a]">{t.year}</p>
+                    <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-[#ead6aa] sm:text-[13px]">
+                      {t.title}
+                    </h3>
+                  </div>
+                  <p className="mt-2 pr-8 text-sm leading-6 text-[#f5f0e7]/88 sm:pr-10 sm:text-[15px]">{t.event}</p>
                   <LotusMark className="absolute right-5 top-1/2 h-8 w-10 -translate-y-1/2 text-[#b88e3f] opacity-80" />
                 </div>
               </article>

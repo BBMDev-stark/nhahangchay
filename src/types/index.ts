@@ -9,7 +9,7 @@ export type DishCategory =
   | "dessert"
   | "beverage";
 
-export type DishTag = "best-seller" | "new" | "chef-choice" | "vegan";
+export type DishTag = "best-seller" | "new" | "chef-choice" | "vegetarian";
 
 export interface Dish {
   id: string;

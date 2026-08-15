@@ -6,7 +6,7 @@ const TAG_STYLES: Record<DishTag, string> = {
   "best-seller": "bg-burgundy/90 text-white border border-gold/30",
   new: "bg-green-primary/15 text-green-primary border border-green-primary/30",
   "chef-choice": "bg-bg-dark/85 text-gold border border-gold/30",
-  vegan: "bg-green-secondary/20 text-green-primary border border-green-secondary/40",
+  vegetarian: "bg-green-secondary/20 text-green-primary border border-green-secondary/40",
 };
 
 export function Badge({ tag, className }: { tag: DishTag; className?: string }) {

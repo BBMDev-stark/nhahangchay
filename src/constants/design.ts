@@ -45,5 +45,5 @@ export const DISH_TAG_LABELS: Record<string, string> = {
   "best-seller": "Best Seller",
   new: "New",
   "chef-choice": "Chef's Choice",
-  vegan: "Vegan",
+  vegetarian: "Món chay",
 };

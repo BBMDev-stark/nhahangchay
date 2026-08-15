@@ -68,9 +68,9 @@ const INITIAL_CENTER: Dish = {
 const INITIAL_CORNERS: Dish[] = [
   {
     id: "dish-soup",
-    src: "/images/huong-sen/hero/che-hat-sen-trimmed.png",
-    alt: "Chè hạt sen táo đỏ",
-    name: "Chè Hạt Sen Táo Đỏ",
+    src: "/images/huong-sen/hero/goi-hoang-cung-topdown-v2.png",
+    alt: "Gỏi Hoàng Cung tại nhà hàng chay Hương Sen",
+    name: "Gỏi Hoàng Cung",
   },
   {
     id: "dish-side",
@@ -434,7 +434,7 @@ export function Hero() {
                     onClick={() => handleSwap(index)}
                     disabled={isSwapping}
                     aria-label={`Xem ${dish.name}`}
-                    className={`${styles.satellite} animate-float-dish group absolute ${slot.position} ${slot.size} aspect-square cursor-pointer appearance-none rounded-full border border-[#d7c5a3] bg-[#fffdf9]/90 p-1 shadow-[0_16px_32px_rgba(63,49,31,0.16)] disabled:cursor-wait`}
+                    className={`${styles.satellite} animate-float-dish group absolute ${slot.position} ${slot.size} aspect-square cursor-pointer appearance-none overflow-hidden rounded-full border border-[#d7c5a3] bg-[#fffdf9]/90 p-1 shadow-[0_16px_32px_rgba(63,49,31,0.16)] disabled:cursor-wait`}
                     style={{ animationDelay: `${slot.delay}s` }}
                   >
                     {/* vòng sáng vàng loé lên khi chính ô này vừa được chọn */}
@@ -495,12 +495,12 @@ export function Hero() {
                 );
               })}
 
-              {/* plant-based badge */}
+              {/* vegetarian restaurant badge */}
               <div className="absolute top-1/2 right-[-1%] flex size-[104px] -translate-y-1/2 flex-col items-center justify-center rounded-full border border-gold/60 bg-[#174c31] text-center text-white shadow-[0_20px_40px_rgba(0,0,0,0.24)] sm:size-[122px] lg:size-[142px]">
                 <Leaf size={16} className="mb-1 text-gold" strokeWidth={1.5} />
-                <span className="font-heading text-xl sm:text-2xl">100%</span>
+                <span className="font-heading text-xl sm:text-2xl">Món Chay</span>
                 <span className="mt-1 text-[8px] leading-tight tracking-[0.15em] uppercase sm:text-[9px]">
-                  Thuần Chay
+                  Đa Dạng
                 </span>
               </div>
 

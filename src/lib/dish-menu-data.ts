@@ -55,7 +55,7 @@ export const dishDetails: Record<string, DishDetail> = {
     description:
       "Cơm được nấu trong thố cùng rau củ, nấm và gia vị chay, phủ lớp chà bông thực vật thơm giòn và dùng nóng tại bàn.",
     checklist: [
-      { icon: Leaf, label: "100% Thuần Chay" },
+      { icon: Leaf, label: "Món Chay" },
       { icon: ShieldCheck, label: "Không Chất Bảo Quản" },
       { icon: Hand, label: "Nấu Trong Thố" },
       { icon: Sparkles, label: "Dùng Nóng" },
@@ -105,7 +105,7 @@ export const dishDetails: Record<string, DishDetail> = {
     ],
     nutrition: { calories: 320, protein: 24, fat: 12, carbs: 36 },
     tags: [
-      { icon: Leaf, label: "Plant Based" },
+      { icon: Leaf, label: "Món Chay" },
       { icon: Wheat, label: "Gluten Free" },
       { icon: Hand, label: "Handmade" },
       { icon: Sparkles, label: "Organic" },
@@ -114,66 +114,66 @@ export const dishDetails: Record<string, DishDetail> = {
 
   "dish-soup": {
     id: "dish-soup",
-    src: "/images/huong-sen/hero/che-hat-sen-trimmed.png",
-    alt: "Chè hạt sen táo đỏ",
-    category: "Món Ngọt Thanh Mát",
-    titleLines: ["Chè Hạt Sen", "Táo Đỏ."],
+    src: "/images/huong-sen/hero/goi-hoang-cung-topdown-v2.png",
+    alt: "Gỏi Hoàng Cung tại nhà hàng chay Hương Sen",
+    category: "Gỏi & Salad",
+    titleLines: ["Gỏi", "Hoàng Cung."],
     description:
-      "Hạt sen, nhãn, táo đỏ và hạt é hòa trong phần nước chè thanh nhẹ; phục vụ trong thố sứ để giữ trọn hương thơm.",
+      "Rau củ, nấm và đậu phộng rang được phối trộn cùng sốt chua ngọt, tạo nên món gỏi tươi giòn và hài hòa.",
     checklist: [
-      { icon: Leaf, label: "100% Thuần Chay" },
-      { icon: ShieldCheck, label: "Không Chất Bảo Quản" },
-      { icon: Sprout, label: "Hạt Sen" },
-      { icon: Sparkles, label: "Vị Ngọt Thanh" },
+      { icon: Leaf, label: "Món Chay" },
+      { icon: Sprout, label: "Rau Củ & Nấm" },
+      { icon: Hand, label: "Trộn Khi Gọi Món" },
+      { icon: Sparkles, label: "Chua Ngọt Hài Hòa" },
     ],
     ingredients: [
       {
         icon: Sprout,
-        title: "Hạt Sen Bùi",
-        description: "Hạt sen mềm bùi là điểm nhấn của món chè.",
+        title: "Rau Củ Tươi",
+        description: "Nhiều loại rau củ tạo độ giòn và màu sắc tự nhiên.",
         position: "top-left",
       },
       {
-        icon: Droplet,
-        title: "Táo Đỏ & Nhãn",
-        description: "Tạo vị ngọt thơm và màu sắc ấm áp.",
+        icon: Leaf,
+        title: "Nấm",
+        description: "Nấm góp thêm vị ngọt và kết cấu mềm mọng.",
         position: "top-right",
       },
       {
-        icon: Leaf,
-        title: "Hạt É",
-        description: "Thêm kết cấu vui miệng và cảm giác thanh mát.",
+        icon: Box,
+        title: "Đậu Phộng Rang",
+        description: "Rắc trên mặt để tăng vị bùi và độ giòn.",
         position: "bottom-left",
       },
       {
-        icon: Box,
-        title: "Nước Chè Thanh",
-        description: "Vị ngọt vừa phải để tôn nguyên liệu.",
+        icon: Droplet,
+        title: "Sốt Gỏi",
+        description: "Vị chua ngọt vừa phải giúp các nguyên liệu hòa quyện.",
         position: "bottom-right",
       },
     ],
     rightCards: [
       {
         icon: Sprout,
-        title: "Thố Sứ Giữ Hương",
-        description: "Phục vụ chỉn chu trong thố sứ trắng có nắp.",
+        title: "Tươi Giòn Nhiều Lớp",
+        description: "Rau củ, nấm và đậu phộng tạo nhiều tầng kết cấu.",
       },
       {
-        icon: Droplet,
-        title: "Ngọt Thanh Dễ Dùng",
-        description: "Phù hợp để kết thúc bữa ăn nhẹ nhàng.",
+        icon: Salad,
+        title: "Phù Hợp Khai Vị",
+        description: "Vị chua ngọt nhẹ giúp mở đầu bữa ăn cân bằng.",
       },
       {
         icon: Sparkles,
-        title: "Dùng Nóng Hoặc Mát",
-        description: "Có thể thưởng thức theo sở thích của thực khách.",
+        title: "Trình Bày Chỉn Chu",
+        description: "Món ăn được hoàn thiện và phục vụ ngay sau khi trộn.",
       },
     ],
-    nutrition: { calories: 180, protein: 9, fat: 5, carbs: 22 },
+    nutrition: { calories: 230, protein: 8, fat: 10, carbs: 28 },
     tags: [
-      { icon: Leaf, label: "Plant Based" },
-      { icon: Wheat, label: "Gluten Free" },
-      { icon: Sparkles, label: "Organic" },
+      { icon: Leaf, label: "Món Chay" },
+      { icon: Sprout, label: "Rau Củ" },
+      { icon: Hand, label: "Trộn Tươi" },
     ],
   },
 
@@ -184,9 +184,9 @@ export const dishDetails: Record<string, DishDetail> = {
     category: "Món Chay Phong Vị Âu",
     titleLines: ["Pizza", "Nấm Chay."],
     description:
-      "Đế bánh nướng vàng với nấm, rau củ, ô-liu và lớp phô mai chay béo nhẹ — phù hợp để cùng chia sẻ tại bàn.",
+      "Đế bánh nướng vàng với nấm, rau củ, ô-liu và lớp phô mai béo nhẹ — phù hợp để cùng chia sẻ tại bàn.",
     checklist: [
-      { icon: Leaf, label: "100% Thuần Chay" },
+      { icon: Leaf, label: "Món Chay" },
       { icon: Sprout, label: "Nấm & Rau Củ" },
       { icon: Hand, label: "Nướng Khi Gọi Món" },
       { icon: Sparkles, label: "Dùng Để Chia Sẻ" },
@@ -212,7 +212,7 @@ export const dishDetails: Record<string, DishDetail> = {
       },
       {
         icon: Sparkles,
-        title: "Phô Mai Chay",
+        title: "Phô Mai",
         description: "Lớp phủ béo nhẹ, nướng đến khi vàng thơm.",
         position: "bottom-right",
       },
@@ -236,7 +236,7 @@ export const dishDetails: Record<string, DishDetail> = {
     ],
     nutrition: { calories: 210, protein: 7, fat: 11, carbs: 18 },
     tags: [
-      { icon: Leaf, label: "Plant Based" },
+      { icon: Leaf, label: "Món Chay" },
       { icon: Wheat, label: "Gluten Free" },
       { icon: Sparkles, label: "Organic" },
     ],
@@ -249,10 +249,10 @@ export const dishDetails: Record<string, DishDetail> = {
     category: "Món Nướng Thơm Béo",
     titleLines: ["Nấm Đút Lò", "Phô Mai."],
     description:
-      "Nấm được chia trong từng chén nhỏ, phủ lớp phô mai chay rồi đút lò đến khi vàng thơm, mềm mọng bên trong.",
+      "Nấm được chia trong từng chén nhỏ, phủ lớp phô mai rồi đút lò đến khi vàng thơm, mềm mọng bên trong.",
     checklist: [
-      { icon: Leaf, label: "100% Thuần Chay" },
-      { icon: Wheat, label: "Phô Mai Chay" },
+      { icon: Leaf, label: "Món Chay" },
+      { icon: Wheat, label: "Có Phô Mai" },
       { icon: Hand, label: "Đút Lò Tại Bếp" },
       { icon: Sparkles, label: "Chia Phần Tiện Dùng" },
     ],
@@ -265,7 +265,7 @@ export const dishDetails: Record<string, DishDetail> = {
       },
       {
         icon: Layers,
-        title: "Phô Mai Chay",
+        title: "Phô Mai",
         description: "Phủ vừa đủ để tạo vị béo và màu vàng hấp dẫn.",
         position: "top-right",
       },
@@ -301,7 +301,7 @@ export const dishDetails: Record<string, DishDetail> = {
     ],
     nutrition: { calories: 260, protein: 15, fat: 9, carbs: 30 },
     tags: [
-      { icon: Leaf, label: "Plant Based" },
+      { icon: Leaf, label: "Món Chay" },
       { icon: Wheat, label: "Gluten Free" },
       { icon: Hand, label: "Handmade" },
     ],
@@ -316,7 +316,7 @@ export const dishDetails: Record<string, DishDetail> = {
     description:
       "Trái cây mềm ngọt, thạch và hạt nhỏ kết hợp cùng lớp cốt dừa béo dịu, tạo nên món tráng miệng mát lành sau bữa chay.",
     checklist: [
-      { icon: Leaf, label: "100% Thuần Chay" },
+      { icon: Leaf, label: "Món Chay" },
       { icon: ShieldCheck, label: "Không Chất Bảo Quản" },
       { icon: Sprout, label: "Trái Cây" },
       { icon: Sparkles, label: "Cốt Dừa" },
@@ -366,7 +366,7 @@ export const dishDetails: Record<string, DishDetail> = {
     ],
     nutrition: { calories: 190, protein: 6, fat: 8, carbs: 26 },
     tags: [
-      { icon: Leaf, label: "Plant Based" },
+      { icon: Leaf, label: "Món Chay" },
       { icon: Wheat, label: "Gluten Free" },
       { icon: Sparkles, label: "Organic" },
     ],

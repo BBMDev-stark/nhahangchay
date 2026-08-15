@@ -151,7 +151,7 @@ const CURATED: CuratedDish[] = [
     imageSrc: "/images/signature-dishes/goi-hoang-cung-cutout.png",
     titleLines: ["Gỏi", "Hoàng Cung"],
     tagline: "Tươi giòn · Thanh nhẹ · Sắc vị",
-    badges: ["Vegan", "Đặc trưng"],
+    badges: ["Món chay", "Đặc trưng"],
     theme: THEMES.spring,
     ingredientNotes: [
       "Tươi giòn, giàu xơ",
@@ -183,7 +183,7 @@ const CURATED: CuratedDish[] = [
     imageSrc: "/images/signature-dishes/che-sen-long-nhan-cutout.png",
     titleLines: ["Chè Sen", "Long Nhãn"],
     tagline: "Thanh mát · Dịu ngọt · An nhiên",
-    badges: ["Vegan", "Thanh vị"],
+    badges: ["Món chay", "Thanh vị"],
     theme: THEMES.jade,
     ingredientNotes: [
       "Bùi mềm, thơm nhẹ",
@@ -203,7 +203,7 @@ const SIGNATURE_SOURCES = {
   "Cơm Cung Đình Gói Lá Sen": { id: "signature-com-cung-dinh", slug: "com-cung-dinh-goi-la-sen", description: "Cơm chiên rau củ và hạt sen, trình bày trong lá sen với hương thơm thanh nhã.", price: 150000, calories: 420, ingredients: ["Gạo thơm", "Hạt sen", "Lá sen", "Đậu Hà Lan", "Nấm"] },
   "Vịt Hoàng Kim + Bánh Bao": { id: "signature-vit-hoang-kim", slug: "vit-hoang-kim-banh-bao", description: "Vịt chay sốt hoàng kim đậm vị, dùng nóng cùng bánh bao mềm và rau tươi.", price: 120000, calories: 390, ingredients: ["Vịt chay", "Bánh bao", "Dưa leo", "Cà chua", "Sốt hoàng kim"] },
   "Bánh Xèo Nấm Thập Cẩm": { id: "signature-banh-xeo-nam", slug: "banh-xeo-nam-thap-cam", description: "Bánh xèo vàng giòn với nhân nấm thập cẩm, ăn kèm rau rừng và nước chấm chay.", price: 140000, calories: 360, ingredients: ["Bột gạo", "Nấm thập cẩm", "Rau rừng", "Giá đỗ", "Nước chấm chay"] },
-  "Nấm Bào Ngư Đút Lò": { id: "signature-nam-bao-ngu", slug: "nam-bao-ngu-dut-lo", description: "Nấm bào ngư nướng trong chén nhỏ, phủ lớp phô mai thực vật vàng thơm.", price: 120000, calories: 310, ingredients: ["Nấm bào ngư", "Phô mai thực vật", "Sốt kem chay", "Gia vị thảo mộc", "Ngò tây"] },
+  "Nấm Bào Ngư Đút Lò": { id: "signature-nam-bao-ngu", slug: "nam-bao-ngu-dut-lo", description: "Nấm bào ngư nướng trong chén nhỏ, phủ lớp phô mai vàng thơm.", price: 120000, calories: 310, ingredients: ["Nấm bào ngư", "Phô mai", "Sốt kem", "Gia vị thảo mộc", "Ngò tây"] },
   "Gỏi Hoàng Cung": { id: "signature-goi-hoang-cung", slug: "goi-hoang-cung", description: "Rau củ, nấm và đậu phộng rang phối trộn cùng sốt chua ngọt đặc trưng.", price: 100000, calories: 230, ingredients: ["Rau củ", "Nấm", "Đậu phộng", "Ớt chuông", "Sốt gỏi chay"] },
   "Mẹt Bánh Quê": { id: "signature-met-banh-que", slug: "met-banh-que", description: "Mẹt bánh dân gian nhiều sắc vị, kết hợp bánh lá, bánh ít và các món chén nhỏ.", price: 130000, calories: 460, ingredients: ["Bánh ít", "Bánh lá", "Bánh bèo", "Đậu phộng", "Rau thơm"] },
   "Chè Sen Long Nhãn": { id: "signature-che-sen", slug: "che-sen-long-nhan", description: "Hạt sen bùi mềm nấu cùng long nhãn trong nước chè thanh ngọt, dùng mát.", price: 25000, calories: 180, ingredients: ["Hạt sen", "Long nhãn", "Đường phèn", "Hoa sen", "Lá dứa"] },
