@@ -73,9 +73,11 @@ const CATEGORIES = (Object.keys(DISH_CATEGORY_LABELS) as DishCategory[]).filter(
 
 type MenuFilter = "all" | DishCategory;
 const FILTERS: MenuFilter[] = ["all", ...CATEGORIES];
+const ITEMS_PER_PAGE = 6;
 
 export function MenuTabs() {
   const [active, setActive] = useState<MenuFilter>("all");
+  const [page, setPage] = useState(1);
 
   const filtered = useMemo(
     () =>
@@ -85,13 +87,24 @@ export function MenuTabs() {
     [active]
   );
 
+  const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
+  const paginated = useMemo(() => {
+    const start = (page - 1) * ITEMS_PER_PAGE;
+    return filtered.slice(start, start + ITEMS_PER_PAGE);
+  }, [filtered, page]);
+
+  const selectFilter = (filter: MenuFilter) => {
+    setActive(filter);
+    setPage(1);
+  };
+
   return (
     <div>
       <div className="mb-14 flex flex-wrap justify-center gap-3">
         {FILTERS.map((filter) => (
           <button
             key={filter}
-            onClick={() => setActive(filter)}
+            onClick={() => selectFilter(filter)}
             className={cn(
               "text-button rounded-full border px-5 py-2.5 transition-colors",
               active === filter
@@ -105,13 +118,13 @@ export function MenuTabs() {
       </div>
 
       <motion.div
-        key={active}
+        key={`${active}-${page}`}
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3"
       >
-        {filtered.map((dish) => (
+        {paginated.map((dish) => (
           <MenuCard key={dish.id} dish={dish} />
         ))}
         {filtered.length === 0 && (
@@ -120,6 +133,53 @@ export function MenuTabs() {
           </p>
         )}
       </motion.div>
+
+      {totalPages > 1 && (
+        <nav
+          className="mt-12 flex flex-wrap items-center justify-center gap-2"
+          aria-label="Phân trang thực đơn"
+        >
+          <button
+            type="button"
+            disabled={page === 1}
+            onClick={() => setPage((current) => Math.max(1, current - 1))}
+            className="rounded-full border border-border px-4 py-2 text-sm text-text/65 transition-colors hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-35"
+          >
+            Trước
+          </button>
+
+          {Array.from({ length: totalPages }, (_, index) => index + 1).map(
+            (pageNumber) => (
+              <button
+                key={pageNumber}
+                type="button"
+                aria-label={`Trang ${pageNumber}`}
+                aria-current={page === pageNumber ? "page" : undefined}
+                onClick={() => setPage(pageNumber)}
+                className={cn(
+                  "flex h-10 w-10 items-center justify-center rounded-full border text-sm transition-colors",
+                  page === pageNumber
+                    ? "border-gold bg-gold text-bg-dark"
+                    : "border-border text-text/60 hover:border-gold hover:text-gold",
+                )}
+              >
+                {pageNumber}
+              </button>
+            ),
+          )}
+
+          <button
+            type="button"
+            disabled={page === totalPages}
+            onClick={() =>
+              setPage((current) => Math.min(totalPages, current + 1))
+            }
+            className="rounded-full border border-border px-4 py-2 text-sm text-text/65 transition-colors hover:border-gold hover:text-gold disabled:cursor-not-allowed disabled:opacity-35"
+          >
+            Sau
+          </button>
+        </nav>
+      )}
     </div>
   );
 }
