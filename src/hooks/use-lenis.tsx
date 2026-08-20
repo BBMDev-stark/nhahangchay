@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, type ReactNode } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 
 interface LenisProviderProps {
@@ -21,6 +22,7 @@ interface LenisProviderProps {
  */
 export function LenisProvider({ children, enabled = true }: LenisProviderProps) {
   const lenisRef = useRef<Lenis | null>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     if (!enabled) return;
@@ -40,9 +42,31 @@ export function LenisProvider({ children, enabled = true }: LenisProviderProps) 
       smoothWheel: true,
     });
     lenisRef.current = lenis;
+    lenis.start();
 
     let rafId = 0;
+    let resizeRafId = 0;
     let active = true;
+
+    // A route can replace the page height while Lenis is still holding the
+    // previous document dimensions. Refresh on the next frame, after the new
+    // route has committed, so a stale limit cannot trap scrolling around a
+    // full-screen section.
+    const refresh = () => {
+      if (!active) return;
+      lenis.resize();
+      lenis.start();
+    };
+
+    resizeRafId = requestAnimationFrame(refresh);
+
+    // Back/forward cache restores the document without remounting React in
+    // every browser. Restart and resize the current instance on pageshow too.
+    const handlePageShow = () => {
+      cancelAnimationFrame(resizeRafId);
+      resizeRafId = requestAnimationFrame(refresh);
+    };
+    window.addEventListener("pageshow", handlePageShow);
 
     function raf(time: number) {
       if (!active) return;
@@ -54,10 +78,12 @@ export function LenisProvider({ children, enabled = true }: LenisProviderProps) 
     return () => {
       active = false;
       cancelAnimationFrame(rafId);
+      cancelAnimationFrame(resizeRafId);
+      window.removeEventListener("pageshow", handlePageShow);
       lenis.destroy();
       lenisRef.current = null;
     };
-  }, [enabled]);
+  }, [enabled, pathname]);
 
   return <>{children}</>;
 }

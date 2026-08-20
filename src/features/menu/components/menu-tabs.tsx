@@ -71,29 +71,35 @@ const CATEGORIES = (Object.keys(DISH_CATEGORY_LABELS) as DishCategory[]).filter(
   (category) => MENU_DISHES.some((dish) => dish.category === category),
 );
 
+type MenuFilter = "all" | DishCategory;
+const FILTERS: MenuFilter[] = ["all", ...CATEGORIES];
+
 export function MenuTabs() {
-  const [active, setActive] = useState<DishCategory>("khai-vi");
+  const [active, setActive] = useState<MenuFilter>("all");
 
   const filtered = useMemo(
-    () => MENU_DISHES.filter((d) => d.category === active),
+    () =>
+      active === "all"
+        ? MENU_DISHES
+        : MENU_DISHES.filter((dish) => dish.category === active),
     [active]
   );
 
   return (
     <div>
       <div className="mb-14 flex flex-wrap justify-center gap-3">
-        {CATEGORIES.map((cat) => (
+        {FILTERS.map((filter) => (
           <button
-            key={cat}
-            onClick={() => setActive(cat)}
+            key={filter}
+            onClick={() => setActive(filter)}
             className={cn(
               "text-button rounded-full border px-5 py-2.5 transition-colors",
-              active === cat
+              active === filter
                 ? "border-gold bg-gold text-bg-dark"
                 : "border-border text-text/60 hover:border-gold hover:text-gold"
             )}
           >
-            {DISH_CATEGORY_LABELS[cat]}
+            {filter === "all" ? "Tất Cả" : DISH_CATEGORY_LABELS[filter]}
           </button>
         ))}
       </div>
