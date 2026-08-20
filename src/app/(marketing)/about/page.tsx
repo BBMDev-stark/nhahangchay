@@ -12,7 +12,10 @@ export const metadata: Metadata = {
 };
 
 const CORE_VALUES = [
-  { title: "Hữu Cơ", desc: "Nguyên liệu 100% hữu cơ, minh bạch nguồn gốc." },
+  {
+    title: "Rau Tươi Sạch",
+    desc: "Nguyên liệu rau tươi sạch được tuyển chọn mỗi ngày.",
+  },
   { title: "Tinh Tế", desc: "Từng chi tiết được chăm chút như một tác phẩm nghệ thuật." },
   { title: "Bền Vững", desc: "Cam kết giảm thiểu tác động môi trường trong vận hành." },
   { title: "Chân Thực", desc: "Tôn trọng hương vị nguyên bản của thực vật." },

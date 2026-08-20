@@ -8,35 +8,63 @@ import { DISH_CATEGORY_LABELS } from "@/constants/design";
 import type { DishCategory } from "@/types";
 import { cn } from "@/lib/utils";
 
-const MENU_IMAGES: Record<string, string> = {
-  "banh-hoi-cha-gio": "/images/menu-real/banh-hoi-cha-gio.png",
-  "banh-xeo-nam-moi": "/images/menu-real/banh-xeo-nam-moi.png",
-  "bi-cuon": "/images/menu-real/bi-cuon.png",
-  "bo-bia": "/images/menu-real/bo-bia.png",
-  "bong-bi-xao-nam-moi": "/images/menu-real/bong-bi-xao-nam-moi.png",
-  "ca-ri-nam-dau-hu": "/images/menu-real/ca-ri-nam-dau-hu.png",
-  "canh-ga-chien-mam": "/images/menu-real/canh-ga-chien-mam.png",
-  "com-ga-roti": "/images/menu-real/com-ga-roti.png",
-  "goi-hoang-cung": "/images/menu-real/goi-hoang-cung.png",
-  "kho-qua-don-dau-kho": "/images/menu-real/kho-qua-don-dau-kho.png",
-  "lau-nam-thai": "/images/menu-real/lau-nam-thai.png",
-  "mien-xao-thap-cam": "/images/menu-real/mien-xao-thap-cam.png",
-  "mi-xao-gion": "/images/menu-real/mi-xao-gion.png",
-  "mi-xao-thap-cam": "/images/menu-real/mi-xao-thap-cam.png",
-  "mi-y-sot-ca": "/images/menu-real/mi-y-sot-ca.png",
-  "nam-moi-kho-tieu-xanh": "/images/menu-real/nam-moi-kho-tieu-xanh.png",
-  "rau-xao-thap-cam": "/images/menu-real/rau-xao-thap-cam.png",
-  "sa-ke-lan-bot-chien": "/images/menu-real/sa-ke-lan-bot-chien.png",
-};
+const MENU_DISH_SLUGS = [
+  "banh-hoi-cha-gio",
+  "banh-khot",
+  "banh-pho-cuon",
+  "banh-xeo-nam-moi",
+  "bi-cuon",
+  "bo-bia",
+  "bo-cuon-pho-mai",
+  "bong-bi-xao-nam-moi",
+  "ca-ri-nam-dau-hu",
+  "canh-chua-bac-ha",
+  "canh-ga-chien-mam",
+  "canh-kho-qua-nhoi-dau",
+  "cha-gio",
+  "che-dau-van",
+  "che-ngu-qua",
+  "com-ga-roti",
+  "com-ngu-sac",
+  "com-nieu",
+  "com-vit-hoang-kim",
+  "goi-chuoi-xanh",
+  "goi-cu-hu-dua",
+  "goi-hoang-cung",
+  "goi-huong-sen",
+  "goi-mit-non-tron",
+  "goi-rau-cau-nam-tuyet",
+  "kho-qua-don-dau-kho",
+  "lau-mam",
+  "lau-nam-thai",
+  "met-banh-que",
+  "mi-xao-gion",
+  "mi-xao-thap-cam",
+  "mi-y-chua-cay",
+  "mi-y-sot-ca",
+  "mien-xao-thap-cam",
+  "nam-moi-kho-tieu-xanh",
+  "nem-vuong",
+  "pasta-dut-lo",
+  "pizza-pho-mai",
+  "pizza-rau-cu",
+  "rau-xao-thap-cam",
+  "sa-ke-lan-bot-chien",
+  "salad-rau-cu",
+  "sup-hat-sen",
+  "sup-toc-tien",
+  "yaourt-hat-dac",
+] as const;
 
-// The menu page is intentionally sourced only from the approved real-photo
-// dataset. This keeps legacy collage crops out of /menu without mutating the
-// shared dish catalogue used by the rest of the site.
+const MENU_DISH_SET = new Set<string>(MENU_DISH_SLUGS);
+
+// Only show dishes that have an approved image in the supplied 45-item menu
+// dataset. The shared catalogue remains available to the rest of the site.
 const MENU_DISHES = dishes
-  .filter((dish) => MENU_IMAGES[dish.slug])
+  .filter((dish) => MENU_DISH_SET.has(dish.slug))
   .map((dish) => ({
     ...dish,
-    image: MENU_IMAGES[dish.slug],
+    image: `/images/menu-dishes/${dish.slug}.webp`,
   }));
 
 const CATEGORIES = (Object.keys(DISH_CATEGORY_LABELS) as DishCategory[]).filter(
