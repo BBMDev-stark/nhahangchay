@@ -311,7 +311,7 @@ export default function AboutPage() {
               <span className="h-px flex-1 bg-gradient-to-l from-transparent to-current" />
             </div>
             <h2 className="mt-3 font-heading text-[clamp(3.2rem,5vw,4.5rem)] leading-none tracking-[-0.025em] text-[#f7efde]">
-              Timeline
+              mốc thời gian
             </h2>
             <div className="mt-3 flex w-full max-w-[330px] items-center gap-4 text-[#c99c47]">
               <span className="h-px flex-1 bg-gradient-to-r from-transparent to-current" />
